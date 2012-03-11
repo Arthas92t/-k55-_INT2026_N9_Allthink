@@ -7,9 +7,12 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^index/', 'main.views.index'),
-	url(r'^login/', 'account.views.login_user'),
+	url(r'^index/$', 'main.views.index'),
+	url(r'^login/$', 'account.views.login_user'),
 	url(r'^register/$','account.views.register'),
 	url(r'^admin/', include(admin.site.urls)),
-	url(r'^logout/', 'account.views.logout_user'),
+	url(r'^logout/$', 'account.views.logout_user'),
+	url(r'^lessons/new_lesson/$', 'lessons.views.createLesson'),
+	url(r'^lessons/edit_lesson/(\d+)/$', 'lessons.views.editLesson'),
+	url(r'^lessons/delete_lesson/(\d+)/$', 'lessons.views.deleteLesson'),
 )

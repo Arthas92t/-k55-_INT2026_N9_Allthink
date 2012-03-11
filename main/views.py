@@ -20,12 +20,3 @@ def index(request):
 		else:
 			yourLessons.append(obj)
 	return render_to_response('index.html',{'username': username,'yourLessons': yourLessons,'otherLessons': otherLessons})
-def createLesson(request):
-	lesson = Lesson.create(request.POST.get('lessonName'), request.user)
-	lesson.save()
-	return HttpResponseRedirect('/index/')
-	
-def editLesson(request):
-	a = 1
-def joinLesson(request):
-	a = 1

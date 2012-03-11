@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Create lesson</title>
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+<style>
+body{
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: 12px;
+}
+</style>
+</head>
+<body>
+	<form action="/lessons/new_lesson/" method="post">
+		<div><a href="/index/">Back</a></div>
+		<div>{{ message }}</div>
+		Lesson's name: 
+		<input type="text" name="lessonName" value="{{ lessonName }}" /><br />
+		
+		<input type="submit" value="create" />
+	</form>
+</body>
+</html>

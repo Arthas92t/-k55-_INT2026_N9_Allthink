@@ -5,7 +5,6 @@ from django.contrib.auth.models import Permission
 from django.contrib.auth import authenticate, login, logout
 
 from django.shortcuts import render_to_response
-from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 
 
@@ -33,7 +32,7 @@ def register(request):
 			return HttpResponseRedirect('/index/')
 		else:
 			state = 'This username has already exist'
-	return render_to_response('register.html',{'state':state, 'username': username})
+	return render_to_response('account/register.html',{'state':state, 'username': username})
 	
 def logout_user(request):
 	if request.user.is_authenticated():
@@ -56,4 +55,4 @@ def login_user(request):
 		else:
 			state = "Your username and/or password were incorrect."
 			
-	return render_to_response('login.html',{'state':state, 'username': username})
+	return render_to_response('account/login.html',{'state':state, 'username': username})

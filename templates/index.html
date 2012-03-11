@@ -14,20 +14,19 @@
 		<h1 id="site-name">Your Lessons</h1>
 		{% for lesson in yourLessons %}
 		<h2>
-			<a href="/lesson/{{ lesson.id }}">
-				{{ lesson.lessonName }}
-			</a>
-			{{ lesson.user }}
+			<a href="/lessons/edit_lesson/{{ lesson.id }}/">{{ lesson.lessonName }}</a>
+								
+			<a href="/lessons/delete_lesson/{{ lesson.id }}/">delete</a>
 		</h2>
 		{% endfor %}
-		
+		<a href="/lessons/new_lesson">add new lesson</a>
 		<h1 id="site-name">Other Lessons</h1>
 		{% for lesson in otherLessons %}
 		<h2>
-			<a href="/lesson/{{ lesson.id }}">
+			<a href="/lessons/view_lesson/{{ lesson.id }}">
 				{{ lesson.lessonName }}
 			</a>
-			{{ lesson.user }}
+			Creator: {{ lesson.user }}
 		</h2>
 		{% endfor %}
 	</form>
