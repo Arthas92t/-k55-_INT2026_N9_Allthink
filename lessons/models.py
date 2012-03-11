@@ -4,10 +4,9 @@ from django.contrib.auth.models import User
 
 class Lesson(models.Model):
 	user = models.ForeignKey(User)
-	lessonsName = models.CharField(max_length=200)
-	
-	def add_lesson(request):
-		a = 1
+	lessonName = models.CharField(max_length=200)
+	def __unicode__(self):
+		return self.lessonName
 
 class VideoLink(models.Model):
 	lesson = models.ForeignKey(User)
