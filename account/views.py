@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 
-
+	
 def get_user(username):
 	try:
 		return User.objects.get(username=username)
@@ -16,20 +16,24 @@ def get_user(username):
 		
 def register(request):
 	state = "fill all field below"
-	username = password = ''
+	username = password = confirmPassword =''
 	if request.POST:
 		username = request.POST.get('username')
 		password = request.POST.get('password')
+		confirmPassword = request.POST.get('confirmPassword')
 		user = get_user(username)
 		if user is None:
-			user = User.objects.create_user(username,'',password)
-			permission = Permission.objects.get(codename="add_lesson")
-			user.user_permissions.add(permission)
-			user.is_staff = True
-			user.save()
-			user = authenticate(username=username, password=password)
-			login(request, user)
-			return HttpResponseRedirect('/index/')
+			if cmp(confirmPassword, password) ==0:
+				user = User.objects.create_user(username,'',password)
+				permission = Permission.objects.get(codename="add_lesson")
+				user.user_permissions.add(permission)
+				user.is_staff = True
+				user.save()
+				user = authenticate(username=username, password=password)
+				login(request, user)
+				return HttpResponseRedirect('/index/')
+			else:
+				state = 'password and Confirm password is not the same'
 		else:
 			state = 'This username has already exist'
 	return render_to_response('account/register.html',{'state':state, 'username': username})

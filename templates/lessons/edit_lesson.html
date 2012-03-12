@@ -12,10 +12,18 @@ body{
 </head>
 <body>
 	<form action="/" " method="post">
-		<a href="/index/">Back</a>
+		<div><a href="/index/">Back</a></div>
 		{{ message }}
-		Lesson's name: 
-		{{ lessonName }}
+		Lesson's name: {{ lessonName }}
+		<div></div>
+		{% for page in listPage%}
+		<h2>
+			<a href="/lessons/edit_lesson/{{ page.id }}">
+				{{ page.pageName }}
+			</a>
+			Creator: {{ lesson.user }}
+		</h2>
+		{% endfor %}		
 	</form>
 </body>
 </html>
