@@ -1,4 +1,5 @@
 # Django settings for solutoire project.
+import os.path
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -39,17 +40,22 @@ USE_I18N = True
 
 # Absolute path to the directory that holds media.
 # Example: "/home/media/media.lawrence.com/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = '/static/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash if there is a path component (optional in other cases).
 # Examples: "http://media.lawrence.com", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/static/'
 
 # URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
 # trailing slash.
 # Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/media/'
+
+STATIC_ROOT = '/static/'
+
+# URL prefix for static files.
+# Example: "http://media.lawrence.com/static/"
+STATIC_URL = ''
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'fvlw5sp42*r@i*t)=9!-)srqdpa+m!r=*cpwo$qx$sl!r+@)x3'
@@ -69,8 +75,23 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'AllThink.urls'
 
+STATICFILES_DIRS = (
+	'c:/django/AllThink/static',
+    # Put strings here, like "/home/html/static" or "C:/www/django/static".
+    # Always use forward slashes, even on Windows.
+    # Don't forget to use absolute paths, not relative paths.
+)
+
 TEMPLATE_DIRS = (
 	'c:/django/AllThink/templates'
+)
+
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.core.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.request",
 )
 
 INSTALLED_APPS = (
@@ -80,8 +101,15 @@ INSTALLED_APPS = (
 	'django.contrib.sites',
 	'django.contrib.admin',
 	'lessons',
+	'account',
 )
 
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    #'compressor.finders.CompressorFinder',
+)
 
 LOGIN_URL = '/AllThink/'
 

@@ -1,21 +1,22 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% extends "base.html" %}
+{% load i18n %}
+{%block title %}
 <head>
-<title>Login</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<style>
-body{
-	font-family:Arial,Helvetica,sans-serif;
-	font-size: 12px;
-}
-</style>
+  <title>AllThink - group 9</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link href="/static/main.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
+{% endblock %}
+
+{% block body %}
+<body>	
+	<div id="content" style="">
+	 <h3>Education heaven!</h3>
+	 <div id="content" style="">
 	{{ state }}
-	<form action="/login/" method="post">
-		{% if next %}
-		<input type="hidden" name="next" value="{{ next }}" />
-		{% endif %}
+	<form action="/login/" method="post">{% csrf_token %}
 		username: 
 		<input type="text" name="username" value="{{ username }}" /><br />
 		password:
@@ -24,5 +25,7 @@ body{
 		<input type="submit" value="Log In" />
 		<div><a href="/register/">register new account</a></div>
 	</form>
+	</div>
+	</div>
 </body>
-</html>
+{% endblock %}

@@ -11,7 +11,7 @@ body{
 </style>
 </head>
 <body>
-	<form action="/lessons/new_lesson/" method="post">
+	<form action="/lessons/new_lesson/" method="post">{% csrf_token %}
 		<div><a href="/index/">Back</a></div>
 		<div>{{ message }}</div>
 		Lesson's name: 

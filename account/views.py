@@ -3,40 +3,37 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from django.contrib.auth import authenticate, login, logout
+from account.models import *
+from django import forms
 
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
-
-	
-def get_user(username):
-	try:
-		return User.objects.get(username=username)
-	except User.DoesNotExist:
-		return None
 		
 def register(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/index/')
 	state = "fill all field below"
-	username = password = confirmPassword =''
+	formReg = FormRegister()
 	if request.POST:
-		username = request.POST.get('username')
-		password = request.POST.get('password')
-		confirmPassword = request.POST.get('confirmPassword')
-		user = get_user(username)
-		if user is None:
-			if cmp(confirmPassword, password) ==0:
-				user = User.objects.create_user(username,'',password)
+		formReg = FormRegister(request.POST)
+		if formReg.is_valid():
+			username = formReg.cleaned_data['username']
+			password = formReg.cleaned_data['password']
+			confirmPassword = formReg.cleaned_data['confirmPassword']
+			email = formReg.cleaned_data['email']
+			if cmp(password, confirmPassword) ==0:
+				user = User.objects.create_user(username,email,password)
 				permission = Permission.objects.get(codename="add_lesson")
 				user.user_permissions.add(permission)
 				user.is_staff = True
 				user.save()
+
 				user = authenticate(username=username, password=password)
 				login(request, user)
 				return HttpResponseRedirect('/index/')
 			else:
-				state = 'password and Confirm password is not the same'
-		else:
-			state = 'This username has already exist'
-	return render_to_response('account/register.html',{'state':state, 'username': username})
+				state = 'password and confirm password are not the same'
+	return render_to_response('account/register.html',{'state':state, 'formReg': formReg})
 	
 def logout_user(request):
 	if request.user.is_authenticated():
@@ -59,4 +56,4 @@ def login_user(request):
 		else:
 			state = "Your username and/or password were incorrect."
 			
-	return render_to_response('account/login.html',{'state':state, 'username': username})
+	return render_to_response('account/login.html',{'state':state, 'formReg': username})

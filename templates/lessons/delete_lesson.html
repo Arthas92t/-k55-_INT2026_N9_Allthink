@@ -11,7 +11,7 @@ body{
 </style>
 </head>
 <body>
-	<form action="/delete_lesson/" " method="post">
+	<form action="/delete_lesson/" " method="post">{% csrf_token %}
 		<a href="/index/">Back</a>
 		{{ message }}
 	</form>

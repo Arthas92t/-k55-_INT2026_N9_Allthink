@@ -11,14 +11,14 @@ body{
 </style>
 </head>
 <body>
-	<form action="/" " method="post">
+	<form action="/" " method="post">{% csrf_token %}
 		<div><a href="/index/">Back</a></div>
 		{{ message }}
 		Lesson's name: {{ lessonName }}
 		<div></div>
 		{% for page in listPage%}
 		<h2>
-			<a href="/lessons/edit_lesson/{{ page.id }}">
+			<a href="/lessons/edit_lesson/{{ listID.id }}">
 				{{ page.pageName }}
 			</a>
 			Creator: {{ lesson.user }}

@@ -20,3 +20,6 @@ def index(request):
 		else:
 			yourLessons.append(obj)
 	return render_to_response('index.html',{'username': username,'yourLessons': yourLessons,'otherLessons': otherLessons})
+
+def home(request):
+	return HttpResponseRedirect('/index/')
