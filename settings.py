@@ -13,7 +13,7 @@ MANAGERS = ADMINS
 DATABASES = {
 	'default': {
 		'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-		'NAME': 'c:/django/AllThink/test.db',					  # Or path to database file if using sqlite3.
+		'NAME': 'test.db',					  # Or path to database file if using sqlite3.
 		'USER': '',					  # Not used with sqlite3.
 		'PASSWORD': '',				  # Not used with sqlite3.
 		'HOST': '',					  # Set to empty string for localhost. Not used with sqlite3.
@@ -33,6 +33,8 @@ TIME_ZONE = 'America/Chicago'
 LANGUAGE_CODE = 'en-us'
 
 SITE_ID = 1
+
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__))
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -76,14 +78,14 @@ MIDDLEWARE_CLASSES = (
 ROOT_URLCONF = 'AllThink.urls'
 
 STATICFILES_DIRS = (
-	'c:/django/AllThink/static',
+	'static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
 )
 
 TEMPLATE_DIRS = (
-	'c:/django/AllThink/templates'
+	'templates'
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
