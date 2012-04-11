@@ -1,0 +1,240 @@
+@charset "utf-8";
+/* CSS Document */
+
+#header{
+	height:160px;
+	margin: 0 auto;
+	background-color:#FFF;
+	}
+#navigation{
+	background-color:#FFF;
+	height:70px;
+	}
+.silver{
+	background-image:url(img/11.png);}
+#line2{background-color:#f2f2f2;}
+#grey{
+	}
+a:hover {
+color:#ee0959;
+}
+.blue a:hover {
+color:#ee0959;
+}
+#grey1{
+	}
+	@font-face {
+    font-family: 'PTSansCaptionBold';
+    src: url('ptc75f-webfont.eot');
+    src: url('ptc75f-webfont.eot?#iefix') format('embedded-opentype'),
+         url('ptc75f-webfont.woff') format('woff'),
+         url('ptc75f-webfont.ttf') format('truetype'),
+         url('ptc75f-webfont.svg#') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+.grid_12.grey{
+	height:62px;}
+.logo{
+	padding-top:65px;
+	position:relative;
+	float:left;}
+.search{padding-top:70px;
+	position:relative;
+	float:right;}
+.colortext {
+    background-color: #ffffff;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:11px;
+	color:#a2a1a1;
+ 	height:30px;
+	width:300px;
+	position:relative;
+	vertical-align:bottom;
+	border-color:#cedbe0;
+	webkit-border-top-left-radius: 5px;
+			-webkit-border-bottom-left-radius: 5px;
+			-moz-border-radius-topleft: 5px;
+			-moz-border-radius-bottomleft: 5px;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px; 
+			-webkit-border-top-right-radius: 5px;
+			-webkit-border-bottom-right-radius: 5px;
+			-moz-border-radius-topright: 5px;
+			-moz-border-radius-bottomright: 5px;
+			border-top-right-radius: 5px;
+			border-bottom-right-radius: 5px;}
+	
+P.line1 {
+	border-bottom:dotted #b2b2b2;
+	background-color:#f2f2f2;}
+.grid_12.top{
+	padding-top:20px;}
+ul { 
+	list-style:none;
+	}
+ul.nav{	
+position: relative;
+display:inline;
+}
+
+ .nav li {
+ float:left;
+ width:173px;
+	height:35px;
+	width:188px;
+	 font-family: 'PTSansCaptionBold';
+	 font-size:14px;
+	 color:#000;
+	 text-align:center;
+			}
+
+ .nav li a {
+	 
+	 width:173px;
+	 float:right;
+	height:35px;
+ color:#000000;
+	text-decoration:none;
+ text-align:center;
+	}
+ .nav li a:hover {
+	background-image:url(img/01.png);
+		width:173px;
+	height:35px;
+	color:#FFF; }
+.text1{font-family: 'PTSansCaptionBold';
+font-size:18px;
+color:#ef0c56;
+	}
+.text2{font-family: 'PTSansCaptionBold';
+font-size:13px;
+color:#000;
+position:relative;
+padding-left:88px;
+	}
+.text3{
+	font-size:14px;
+	color:#000;}
+.text4{font-family: 'PTSansCaptionBold';
+font-size:30px;
+font-weight:bold;
+color:#000;	}
+.text5{
+	font-family: 'PTSansCaptionBold';
+font-size:14px;
+color:#000;
+}
+.mec{
+	position:relative;
+	float:left;}
+.rss{
+	position:relative;
+	float:right;
+	}
+	.rss1{
+	position:relative;
+	float:right;
+	width:300px;}
+.grid_12.modern{
+	height:35px;}
+.grid_12.modern1{
+	height:50px;}
+.text{
+	text-align:center;
+	}
+.text6{font-family: 'PTSansCaptionBold';
+font-size:30px;
+font-weight:bold;
+	color:#000;
+	text-align:center;}
+.text7{font-family: 'PTSansCaptionBold';
+font-size:20px;
+font-weight:bold;
+	color:#6929d5;
+	}
+.text8{font-family: 'PTSansCaptionBold';
+font-size:20px;
+font-weight:bold;
+	color:#ac5bc7;
+	}
+.text9{font-family: 'PTSansCaptionBold';
+font-size:20px;
+font-weight:bold;
+	color:#d01075;
+	}
+.text10{font-family: 'PTSansCaptionBold';
+font-size:20px;
+font-weight:bold;
+	color:#ee0959;
+	}
+.text11{    font-family: 'PTSansCaptionBold';
+font-style:italic;
+font-size:15px;
+color:#000;
+
+	}
+.text12{
+	 font-family: 'PTSansCaptionBold';
+	 font-size:12px;
+	}
+.vlinks {
+ font-family: 'PTSansCaptionBold';
+	 font-size:12px;
+	 padding-top:20px;
+}
+
+.vlinks a {
+	color:#000;
+	text-decoration:none;
+}
+
+.vlinks a:hover {
+color:#ee0959;
+}
+	
+	
+	   .layout { overflow: hidden;
+	    }
+   .col1 { width: 50%; float: left; }
+   .col1 .wrap {
+	  
+      margin-right: 250px; 
+    padding: 10px; 
+   }
+   .col2 {  width: 500px; float: left; 
+           margin-left: -250px;
+		   text-align:center; }
+   .col3 { width: 50%; float: right; margin-left: -250px; }
+   .col3 .wrap { 
+
+    margin-left: 250px;
+    padding: 10px; 
+   }
+.grid_12.four{
+	height:40px;}
+.image{
+	padding-right:3px;}
+.image1{
+	padding-left:5px;
+	position:relative;
+	float:right;}
+.image3{
+	padding-left:25px;}
+.grid_12.fase{
+	height:45px;}
+.logo2{
+	padding-top:20px;}
+.news{ font-family: 'PTSansCaptionBold';
+	font-size:18px;
+	font-weight:bold;}
+.blue a {
+	color:#037cac;
+	font-size:12px;
+	font-family: 'PTSansCaptionBold';
+	}
+
+.point{
+	position:relative;
+	float:right;

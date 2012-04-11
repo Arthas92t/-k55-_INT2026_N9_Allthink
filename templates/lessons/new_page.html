@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% extends "base.html" %}
+
+{% load i18n %}
+{%block title%}
+<head>
+	<title>Lesson {{ lessonName }}</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+{%endblock%}
+{%block body%}
+
+<body>
+        <div id="title" style="">
+	 <h3>Education Heaven</h3>
+	</div>
+	
+	<div id="container">
+	
+	 <div id="sidebar">
+	  <div id="menu">
+	   <h1>Main menu</h1>
+	   <a href="/">Home</a><br />
+	   <a href="#">About Us</a><br />
+	   <a href="#">News</a><br />
+	   <a href="#">Contact Us</a><br />
+	   <a href="#">Links</a><br/>
+           <a href="/lessons/new_lesson">Lessons</a>
+	   
+	  </div>
+	 </div>
+	
+	 <div id="content">
+		{{type}}
+		{{t}}
+		<form action="." method="post">{% csrf_token %}
+			<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
+			<table>{{form.as_table}}</table>
+			<input type="submit" value="create" />
+		</form>
+	 </div>
+	</div>
+</body>
+
+{%endblock%}

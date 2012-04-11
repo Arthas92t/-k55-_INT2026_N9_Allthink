@@ -1,23 +1,56 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% extends "base.html" %}
+
+{% load i18n %}
+{%block title%}
 <head>
-<title>Create lesson</title>
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<style>
-body{
-	font-family:Arial,Helvetica,sans-serif;
-	font-size: 12px;
-}
-</style>
+
+  <title>Create Lesson</title>
+  
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
+{%endblock%}
+{%block body%}
+
 <body>
-	<form action="/lessons/new_lesson/" method="post">{% csrf_token %}
-		<div><a href="/index/">Back</a></div>
-		<div>{{ message }}</div>
-		Lesson's name: 
-		<input type="text" name="lessonName" value="{{ lessonName }}" /><br />
-		
-		<input type="submit" value="create" />
-	</form>
+        <div id="title" style="">
+	 <h3>Education Heaven</h3>
+	</div>
+	
+	<div id="container">
+	
+	 <div id="sidebar">
+	  <div id="menu">
+	   <h1>Main menu</h1>
+	   <a href="/">Home</a><br />
+	   <a href="#">About Us</a><br />
+	   <a href="#">News</a><br />
+	   <a href="#">Contact Us</a><br />
+	   <a href="#">Links</a><br/>
+           <a href="/lessons/new_lesson">Lessons</a>
+	   
+	  </div>
+	 </div>
+	
+	 <div id="content">
+	
+		<form action="/lessons/new_lesson/" method="post">{% csrf_token %}
+			<div><a href="/">Back</a></div>
+			<div>{{ message }}</div>
+			Lesson's name: 
+			<div></div>
+			<input type="text" name="lessonName" value="{{ lessonName }}" /><br />
+			Lesson's information:
+			<div></div>
+			<textarea name="information" rows ='10' cols='40' value="{{ information }}" ></textarea><br />
+			<input type="submit" value="create" />
+		</form>
+	  <div>&nbsp;</div><br />	
+	 </div>
+	</div>
 </body>
+
+{%endblock%}
+
 </html>

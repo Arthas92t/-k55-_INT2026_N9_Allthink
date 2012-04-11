@@ -1,8 +1,180 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="/static/styles.css" />
+<link rel="stylesheet" href="/static/text.css" />
+<link rel="stylesheet" href="/static/960.css" />
+
+<head>	
 {%block title %}{%endblock%}
-<link href="/static/main.css" rel="stylesheet" type="text/css" />
-{% block topleft %}{%endblock%}
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+
+{%block account %}{%endblock%}
+</head><body>
+<div id="header">
+<div class="container_12">
+   <div class="grid_6">
+        <div class=" logo">
+        <a target="_blank" href="">
+           <img src="/static/img/logo.png" alt="logo" />
+        </a></div></div>
+   <div class="grid_6">
+        <div class="search"> 
+        <form method="post" action="handler.php">
+            <input name="textfield" type="text" class="colortext"  value="  Search" />
+        </form>
+        </div>
+       <div class="search"> 
+            <form  action="handler.php">
+                <input type="image" class="colortext1" src="/static/img/button.png" alt="/static/img" />
+            </form>
+	   </div>
+	</div>
+</div>
+</div>
+<div id="line"><p class="line1"></p></div>
+<div id="navigation">
+<div class="container_12">
+<div class="grid_12 top">
+    <ul class="nav">
+	<li><a href="#"><strong>HOME</strong></a></li>
+	<li><a href="#"><strong>NEWS</strong></a></li>
+	<li><a href="#"><strong>TUTORIAL</strong></a></li>
+	<li><a href="#"><strong>FAQ</strong></a></li>
+	<li><a href="#"><strong>PROFILE</strong></a></li>
+    </ul>
+</div>
+</div>
+</div>
+<div class="silver">
+
+<div id="grey">
+<div class="container_12">
+<div class="grid_12 grey"></div>
+<div class="grid_7"><p>This should be a link to tutorial video.</p><img src="/static/img/03.png" alt="/static/img" /></div>
+
+<div class="grid_5">
+<div class="mec"><p class="text1"><u>MEC News</u></p></div>
+<div class="rss"><p><a target="_blank" href=""><img src="/static/img/04.png" alt="/static/img" /></a></p></div>  
+<div class="clear"></div>
+
+<div class="mec"><img src="/static/img/05.png" alt="/static/img" /></div>
+<div><p class="text2">November, 23</p></div>
+<div><p class="text3">Any paragraph</p></div>
+<div class="clear"></div>
+<div class="mec"><img src="/static/img/06.png" alt="/static/img" /></div>
+<div><p class="text2">August, 12</p></div>
+<div><p class="text3">Any paragraph</p></div>
+<div class="clear"></div>
+<div class="mec"><img src="/static/img/07.png" alt="/static/img" /></div>
+<div><p class="text2">August, 12</p></div>
+<div><p class="text3">Any paragraph</p></div>
+</div>
+
+<div class="clear"></div>
+<div class="grid_12 modern"></div>
+<div class="grid_4 jhon"><p class="text">
+    <span class="text4">John Arthur Doe</span><br />
+    <span class="text5">Professor of Philology</span></p>
+</div>
+<div class="gird_8"><p class="text5"><br /><br />Any paragraph</p></div>
+<div class="grid_12 modern1"></div>
+<div class="grid_4 jhon">
+<div class="text5">
+<!--{% block topleft %}{%endblock%}-->
 {% block body %}
 {% endblock%}
+</div>
+</div>
+</div>
+</div>
+
+<div id="middle"><div class="layout">
+<div class="col1"><div class="wrap"><p class="line1"></p></div></div>
+<div class="col2"><span class="text6">More about us</span></div>
+<div class="col3"><div class="wrap"><p class="line1"></p></div></div></div>
+</div>
+
+<div id="grey1">
+<div class="container_12">
+<div class="grid_12 four"></div>
+<div class="grid_3"><span class="text10">Boasting</span></div>
+<div class="grid_3"><span class="text9">Boasting </span></div>
+<div class="grid_3"><span class="text8">Boasting</span></div>
+<div class="grid_3"><span class="text7">Boasting</span></div>
+<div class="grid_3"><p class="text3">Any paragraph.</p></div>
+<div class="grid_3"><p class="text3">Any paragraph.</p></div>
+<div class="grid_3"><p class="text3">Any paragraph.</p></div>
+<div class="grid_3"><p class="text3">Any paragraph.</p></div>
+<div class="grid_12 four"></div>
+</div>
+</div>
+
+<div id="line2"><p class="line1"></p></div>
+<div id="facebook">
+<div class="container_12">
+<div class="grid_3">
+    <img src="/static/img/10.png" alt="/static/img" />
+</div>
+<div class="grid_9">
+    <img class="image3" src="/static/img/f1.png" alt="/static/img" />
+	<img src="/static/img/f2.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f3.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f4.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f5.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f6.png" class="image" alt="/static/img" />
+	<img src="/static/img/f7.png" class="image" alt="/static/img" />
+	<img src="/static/img/f8.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f9.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f10.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f11.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f4.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f5.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f6.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f7.png" class="image"  alt="/static/img" />
+	<img src="/static/img/f8.png"  class="image" alt="/static/img" />
+	<img src="/static/img/f9.png" class="image" alt="/static/img" />
+	<img src="/static/img/f10.png"  class="image" alt="/static/img" />
+</div>
+<div class="grid_12 fase"></div>
+<div class="grid_1"><img src="/static/img/12.png" alt="/static/img" /></div>
+<div class="grid_5"><p class="text11">Compliment.<br /><br /><strong>Dave Donovan, MEC Student</strong></p></div>
+<div class="grid_1"><img src="/static/img/12.png" alt="/static/img" /></div>
+<div class="grid_5"><p class="text11">Compliment.<br /><br /><strong>John Doe, MEC Student</strong> </p></div>
+
+</div>
+</div>
+<div id="line"><p class="line1"></p></div>
+<div id="footer"><div class="container_12"><div class="grid_6 "><div> <img class="logo2" src="/static/img/13.png" alt="/static/img" /></div>
+
+<div class="vlinks"><a href="http://www.webdesign.org">Web design</a> by <a title="Free Templates Online" href="http://www.freetemplatesonline.com">Free Templates</a> Online</div>
+
+<div class="text12">© 2001-2011 All Rights Reserved</div></div>
+
+
+<div class="grid_2">
+<div class="news">MEC News</div>
+<div class="blue"><a target="_blank" href="">Overview</a></div>
+<div class="blue"><a target="_blank" href="">Store</a></div>
+<div class="blue"><a target="_blank" href="">Hosting</a></div>
+<div class="blue"><a target="_blank" href="">Videos</a></div>
+</div><div class="grid_2">
+<div class="news">Resources</div>
+<div class="blue"><a target="_blank" href="">Overview</a></div>
+<div class="blue"><a target="_blank" href="">Store</a></div>
+<div class="blue"><a target="_blank" href="">Hosting</a></div>
+<div class="blue"><a target="_blank" href="">Videos</a></div>
+</div><div class="grid_2">
+<div class="news">Contact Us</div>
+<div class="blue"><a target="_blank" href="">Support</a></div>
+<div class="blue"><a target="_blank" href="">FAQ</a></div>
+<div class="blue"><a target="_blank" href="">Forum</a></div>
+<div class="blue"><a target="_blank" href="">Privacy Policy</a></div></div>
+</div>
+</div>
+</div>
+
+</body>
 </html>

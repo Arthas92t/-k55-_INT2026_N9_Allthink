@@ -1,19 +1,59 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 {% extends "base.html" %}
+
 {% load i18n %}
+{%block title%}
 <head>
-<title>Login</title>
+
+  <title>Register</title>
+  
 <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link href="/static/main.css" rel="stylesheet" type="text/css" />
 </head>
-{%block body%}
-<body
-	<div><a href="/index/">Back</a></div>
-	{{ state }}
-	<form action="/register/" method="post">{% csrf_token %}
-		{{formReg.as_p}}
-		<input type="submit" value="register" />
-	</form>
-</body>
 {%endblock%}
+{%block body%}
+
+<body>
+        <div id="title" style="">
+	 <h3>Education Heaven</h3>
+	</div>
+	
+	<div id="container">
+	
+	 <div id="sidebar">
+	  <div id="menu">
+	   <h1>Main menu</h1>
+	   <a href="/">Home</a><br />
+	   <a href="#">About Us</a><br />
+	   <a href="#">News</a><br />
+	   <a href="#">Contact Us</a><br />
+	   <a href="#">Links</a><br/>
+           <a href="/lessons/new_lesson">Lessons</a>
+	   
+	  </div>
+	 </div>
+	
+	 <div id="content">
+	
+	  <div><a href="/">Back</a></div>
+
+        <p>Join one of the biggest community in the world !</p>
+	{{ state }}
+
+	<form action="/register/" method="post">{% csrf_token %}
+	
+		<table>{{formReg.as_table}}</table>
+
+		<input type="submit" value="register" />
+
+	</form>
+	</div>
+	</div>
+</body>
+
+{%endblock%}
+
 </html>

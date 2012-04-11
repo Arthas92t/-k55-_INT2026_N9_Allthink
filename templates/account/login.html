@@ -1,31 +1,70 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
 {% extends "base.html" %}
 {% load i18n %}
+
 {%block title %}
+
 <head>
-  <title>AllThink - group 9</title>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <link href="/static/main.css" rel="stylesheet" type="text/css" />
+  <title>Welcome</title>
+  
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
+
 {% endblock %}
 
+
 {% block body %}
-<body>	
-	<div id="content" style="">
-	 <h3>Education heaven!</h3>
-	 <div id="content" style="">
-	{{ state }}
-	<form action="/login/" method="post">{% csrf_token %}
-		username: 
-		<input type="text" name="username" value="{{ username }}" /><br />
-		password:
-		<input type="password" name="password" value="" /><br />
+
+<body>
+<div id="title" style="">
+	 <h3>Education Heaven</h3>
+	</div>
+	
+	<div id="container">
+	
+		<div id="sidebar">
+			<div id="menu">
+				<h1>Main menu</h1>
+				<a href="/">Home</a><br />
+				<a href="#">About Us</a><br />
+				<a href="#">News</a><br />
+				<a href="#">Contact Us</a><br />
+				<a href="#">Links</a><br/>
+				<a href="/lessons/new_lesson">Lessons</a>	   
+			</div>
+		</div>
+	
+		<div id="content">
 		
-		<input type="submit" value="Log In" />
-		<div><a href="/register/">register new account</a></div>
-	</form>
-	</div>
-	</div>
+			{{ loginMessage }}
+
+			<form action="/login/" method="POST">{% csrf_token %}
+			
+				username: 
+				<input type="text" name="username" value="{{ username }}" /><br />
+			
+				password:
+				<input type="password" name="password" value="" /><br />
+				<input type="submit" value="Log In" /><br/>
+				
+			</form>
+
+			<p>Join one of the biggest community in the world !</p>
+			{{ regMessage }}
+
+			<form action="/register/" method="POST">{% csrf_token %}
+			
+				<table>{{formReg.as_table}}</table>
+
+				<input type="submit" value="register" />
+
+			</form>
+			<div>&nbsp;</div><br />
+		</div>
+	</div>	
 </body>
+
 {% endblock %}

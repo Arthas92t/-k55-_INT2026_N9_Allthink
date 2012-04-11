@@ -8,14 +8,20 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-	url(r'^$', 'main.views.home'),
-	url(r'^index/$', 'main.views.index'),
+	url(r'^$', 'main.views.index'),
+	
 	url(r'^login/$', 'account.views.login_user'),
 	url(r'^register/$','account.views.register'),
-	url(r'^admin/', include(admin.site.urls)),
 	url(r'^logout/$', 'account.views.logout_user'),
+	url(r'^admin/', include(admin.site.urls)),
+
 	url(r'^lessons/new_lesson/$', 'lessons.views.createLesson'),
 	url(r'^lessons/edit_lesson/(\d+)/$', 'lessons.views.editLesson'),
+	url(r'^lessons/view_lesson/(\d+)/$', 'lessons.views.viewLesson'),
 	url(r'^lessons/delete_lesson/(\d+)/$', 'lessons.views.deleteLesson'),
+	
+	url(r'^lessons/new_page/(\d+)/([a-z]+)/$', 'lessons.views.newPage'),
+	url(r'^lessons/view_page/(\d+)/(\d+)/$', 'lessons.views.viewPage'),
+	url(r'^lessons/edit_page/(\d+)/(\d+)/$', 'lessons.views.editPage'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'c:/django/AllThink/static/'}),
 )

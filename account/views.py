@@ -10,9 +10,8 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 		
 def register(request):
-	if request.user.is_authenticated():
-		return HttpResponseRedirect('/index/')
-	state = "fill all field below"
+	loginMessage = "Please login below..."
+	regMessage = "fill all field below"
 	formReg = FormRegister()
 	if request.POST:
 		formReg = FormRegister(request.POST)
@@ -30,21 +29,21 @@ def register(request):
 
 				user = authenticate(username=username, password=password)
 				login(request, user)
-				return HttpResponseRedirect('/index/')
+				return HttpResponseRedirect('/')
 			else:
-				state = 'password and confirm password are not the same'
-	return render_to_response('account/register.html',{'state':state, 'formReg': formReg})
+				regMessage = 'password and confirm password are not the same'
+	return render_to_response('account/login.html',{'loginMessage':loginMessage, 'regMessage':regMessage, 'formReg': formReg})
 	
 def logout_user(request):
 	if request.user.is_authenticated():
 		logout(request)
-	return HttpResponseRedirect('/index/')
+	return HttpResponseRedirect('/')
 
 def login_user(request):
-	if request.user.is_authenticated():
-		return HttpResponseRedirect('/index/')
-	state = "Please login below..."
+	loginMessage = "Please login below..."
+	regMessage = "fill all field below"
 	username = password = ''
+	formReg = FormRegister()
 	if request.POST:
 		username = request.POST.get('username')
 		password = request.POST.get('password')
@@ -52,8 +51,8 @@ def login_user(request):
 		user = authenticate(username=username, password=password)
 		if user is not None:
 				login(request, user)
-				return HttpResponseRedirect('/index/')
+				return HttpResponseRedirect('/')
 		else:
-			state = "Your username and/or password were incorrect."
+			loginMessage = "Your username and/or password were incorrect."
 			
-	return render_to_response('account/login.html',{'state':state, 'formReg': username})
+	return render_to_response('account/login.html',{'loginMessage':loginMessage, 'regMessage':regMessage, 'formReg': formReg})
