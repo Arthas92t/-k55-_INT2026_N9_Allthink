@@ -9,27 +9,8 @@
 {%block body%}
 
 <body>
-      <!--  <div id="title" style="">
-	 <h3>Education Heaven</h3>
-	</div>
-	</div>
 	
-	<div id="container">
-	
-	 <div id="sidebar">
-	  <div id="menu">
-	   <h1>Main menu</h1>
-	   <a href="/">Home</a><br />
-	   <a href="#">About Us</a><br />
-	   <a href="#">News</a><br />
-	   <a href="#">Contact Us</a><br />
-	   <a href="#">Links</a><br/>
-           <a href="/lessons/new_lesson">Lessons</a>
-	   
-	  </div>
-	 </div>-->
-	
-	 <div id="content">
+	 <div class="text3">
 	<form action="/lessons/edit_lesson/{{lessonID}}/" " method="post">{% csrf_token %}
 		<div><a href="/">Back</a></div>
 		{{ message }}
@@ -52,7 +33,6 @@
 	</form>
 	  <div>&nbsp;</div><br />	
 	 </div>
-	</div>
 </body>
 
 {%endblock%}
