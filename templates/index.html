@@ -6,7 +6,7 @@
  <title>Project AllThink</title>
  <link href="/static/main.css" rel="stylesheet" type="text/css" />
 </head>
-
+{% block body %}
 <body>
 <div id="grey">
 <div class="container_12">
@@ -17,24 +17,23 @@
 </div>
 
 <div class="grid_5">
-<div class="mec"><p class="text1"><u><a href="">MEC News</a></u></p></div>
+<div class="mec"><p class="text1"><u><a href="#">MEC News</a></u></p></div>
 <div class="rss"><p><a target="_blank" href=""><img src="img/04.png" alt="img" /></a></p></div>  
 <div class="clear"></div>
 
 <div class="mec"><img src="img/05.png" alt="img" /></div>
 <div><p class="text3">November, 23</p></div>
-<div><p class="text3">Lecture by Prof John Hardinge.Justice:What is the right thing to do ?See<a href=""> more</a></p></div>
-
+<div><p class="text3">Justice:What is the right thing to do ?See<a href="#"> more</a></p></div>
 <div class="clear"></div>
 
 <div class="mec"><img src="img/06.png" alt="img" /></div>
 <div><p class="text3">August, 12</p></div>
-<div><p class="text3">Fashion:How to make yourself look gorgeous.See<a href=""> more</a></p></div>
+<div><p class="text3">Fashion:How to make yourself look gorgeous.See<a href="#"> more</a></p></div>
 <div class="clear"></div>
 
 <div class="mec"><img src="img/07.png" alt="img" /></div>
 <div><p class="text3">August, 12</p></div>
-<div><p class="text3">How to motivate yourself in class.See<a href=""> more</a></p></div>
+<div><p class="text3">How to motivate yourself in class.See<a href="#"> more</a></p></div>
 </div>
 
 <div class="clear"></div>
@@ -43,16 +42,14 @@
     <span class="text4">John Arthur Doe</span><br />
     <span class="text5">Professor of Philology</span></p>
 </div>
+<div class="text3"><p>Tag of the week.</p></div>
 <div class="gird_8"><p class="text5"><br /><br />Day had now given away to night and as we 
 wandered along the great avenue lighted by the two moons of Barsoom, 
 and with Earth looking down upon us out of her luminous green eye, it seemed that 
 we were alone in the universe, and I, at least, was content that it should be so.</p></div>
-<div class="grid_12 modern1"></div>
-<div class="grid_4 jhon">
-</div>
 </div>
 </div>
 </body>
-
+{% endblock %}
 </html>
 
