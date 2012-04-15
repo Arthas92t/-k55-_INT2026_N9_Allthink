@@ -1,16 +1,20 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-{% extends "index.html" %}
+{% extends "base.html" %}
 
 {% load i18n %}
 {%block title%}Lesson {{ lessonName }}{%endblock%}
-
 {%block body%}
-	{{type}}
-	<form action="." method="post">{% csrf_token %}
-		<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
-		<table>{{form.as_table}}</table>
-		<input type="submit" value="Save" />
-	</form>
+
+<body>
+        <div id="title" style="">
+	 <h3>Education Heaven</h3>
+	</div>
+	
+	<div id="container">	
+	 <div id="content">
+		{{t}}
+	</div>
+</body>
+
 {%endblock%}
-</html>

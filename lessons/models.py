@@ -25,6 +25,10 @@ class Lesson(models.Model):
 			newPage.link = form.cleaned_data['link']
 		if type == 'text':
 			newPage = TextPage()
+		if type == 'step':
+			newPage = StepPage()
+			newPage.length = form.cleaned_data['length']
+			
 			
 		newPage.lesson = self
 		newPage.title = form.cleaned_data['title']
@@ -45,6 +49,8 @@ class Lesson(models.Model):
 			listPage.append(i)
 		for i in self.textpage_set.all():
 			listPage.append(i)
+		for i in self.steppage_set.all():
+			listPage.append(i)
 		for i in range(len(listPage)):
 			for j in range(i, len(listPage)):
 				if(listPage[i].pageNumber > listPage[j]. pageNumber):
@@ -54,26 +60,10 @@ class Lesson(models.Model):
 		return listPage
 	
 	def len(self):
-		len = 0
-		len = len + self.videopage_set.count()
-		len = len + self.imagepage_set.count()
-		len = len + self.documentpage_set.count()
-		len = len + self.textpage_set.count()
-		return len
+		return self.getAllPage()
 		
 	def getPage(self, number):
-		for i in self.videopage_set.all():
-			if i.pageNumber == int(number):
-				return i
-		for i in self.imagepage_set.all():
-			if i.pageNumber == int(number):
-				return i
-		for i in self.documentpage_set.all():
-			if i.pageNumber == int(number):
-				return i
-		for i in self.textpage_set.all():
-			if i.pageNumber == int(number):
-				return i
+		return self.getAllPage()[int(number)]
 	
 class FormVideoPage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -92,6 +82,8 @@ class VideoPage(models.Model):
 	
 	def __unicode__(self):
 		return self.title
+	def linkID(self):
+		return self.link[(len(self.link) - 11):]
 
 class FormImagePage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -144,3 +136,48 @@ class TextPage(models.Model):
 	
 	def __unicode__(self):
 		return self.title
+
+class FormStepPage(forms.Form):
+	title = forms.CharField(max_length=200)
+	text = forms.CharField(max_length = 1000, label = 'Text')
+	length = forms.IntegerField()
+
+class StepPage(models.Model):
+	lesson = models.ForeignKey(Lesson)
+
+	title = models.CharField(max_length=200)
+	text = models.CharField(max_length=1000, blank = True)
+	length = models.IntegerField(max_length=200)
+
+	type = models.CharField(max_length=200)
+	pageNumber = models.IntegerField(max_length=200)
+	
+	def getAllStep(self):
+		listStep = []
+		for i in self.step_set.all():
+			listStep.append(i)
+		for i in range(len(listStep)):
+			for j in range(i, len(listStep)):
+				if(listStep[i].StepNumber > listPage[j]. StepNumber):
+					temp = stepPage[i]
+					stepPage[i] = stepPage[j]
+					stepPage[j] = temp
+		return listPage
+
+	def __unicode__(self):
+		return self.title
+
+class FormStep(forms.Form):
+	a = forms.CharField(max_length= 1000, label = 'a')
+	b = forms.CharField(max_length = 1000, label = 'b')
+
+class Step(models.Model):
+	page = models.ForeignKey(StepPage)
+	a = models.CharField(max_length=1000)
+	b = models.CharField(max_length=1000)
+
+	stepNumber = models.IntegerField(max_length=200)
+	
+	def __unicode__(self):
+		return self.title
+

@@ -5,66 +5,26 @@
 {% extends "base.html" %}
 {% load i18n %}
 
-{%block title %}
-
-<head>
-  <title>Welcome</title>
-  
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-</head>
-
-{% endblock %}
-
+{%block title %}Welcome{% endblock %}
 
 {% block body %}
-
-<body>
-<div id="title" style="">
-	 <h3>Education Heaven</h3>
-	</div>
+	{{ loginMessage }}
+	<form action="/login/" method="POST">{% csrf_token %}
+		username: 
+		<input type="text" name="username" value="{{ username }}" /><br />
 	
-	<div id="container">
-	
-		<div id="sidebar">
-			<div id="menu">
-				<h1>Main menu</h1>
-				<a href="/">Home</a><br />
-				<a href="#">About Us</a><br />
-				<a href="#">News</a><br />
-				<a href="#">Contact Us</a><br />
-				<a href="#">Links</a><br/>
-				<a href="/lessons/new_lesson">Lessons</a>	   
-			</div>
-		</div>
-	
-		<div id="content">
+		password:
+		<input type="password" name="password" value="" /><br />
+		<input type="submit" value="Log In" /><br/>
 		
-			{{ loginMessage }}
-
-			<form action="/login/" method="POST">{% csrf_token %}
-			
-				username: 
-				<input type="text" name="username" value="{{ username }}" /><br />
-			
-				password:
-				<input type="password" name="password" value="" /><br />
-				<input type="submit" value="Log In" /><br/>
-				
-			</form>
-
-			<p>Join one of the biggest community in the world !</p>
-			{{ regMessage }}
-
-			<form action="/register/" method="POST">{% csrf_token %}
-			
-				<table>{{formReg.as_table}}</table>
-
-				<input type="submit" value="register" />
-
-			</form>
-			<div>&nbsp;</div><br />
-		</div>
-	</div>	
-</body>
-
+	</form>
+	<p>Join one of the biggest community in the world !</p>
+	{{ regMessage }}
+	<form action="/register/" method="POST">{% csrf_token %}
+	
+		<table>{{formReg.as_table}}</table>
+		<input type="submit" value="register" />
+	</form>
+	<div>&nbsp;</div><br />
 {% endblock %}
+</html>

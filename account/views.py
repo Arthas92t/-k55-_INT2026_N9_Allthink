@@ -10,6 +10,8 @@ from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 		
 def register(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/')
 	loginMessage = "Please login below..."
 	regMessage = "fill all field below"
 	formReg = FormRegister()
@@ -40,6 +42,8 @@ def logout_user(request):
 	return HttpResponseRedirect('/')
 
 def login_user(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect('/')
 	loginMessage = "Please login below..."
 	regMessage = "fill all field below"
 	username = password = ''

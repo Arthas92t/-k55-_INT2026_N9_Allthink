@@ -1,35 +1,11 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% load i18n %}
-{%block title%}
-	<title>Edit Lesson {{ lessonName }}</title>
-{%endblock%}
-{%block body%}
+{%block title%}Edit Lesson {{ lessonName }}{%endblock%}
 
-<body>
-      <!--  <div id="title" style="">
-	 <h3>Education Heaven</h3>
-	</div>
-	</div>
-	
-	<div id="container">
-	
-	 <div id="sidebar">
-	  <div id="menu">
-	   <h1>Main menu</h1>
-	   <a href="/">Home</a><br />
-	   <a href="#">About Us</a><br />
-	   <a href="#">News</a><br />
-	   <a href="#">Contact Us</a><br />
-	   <a href="#">Links</a><br/>
-           <a href="/lessons/new_lesson">Lessons</a>
-	   
-	  </div>
-	 </div>-->
-	
-	 <div id="content">
+{%block body%}
 	<form action="/lessons/edit_lesson/{{lessonID}}/" " method="post">{% csrf_token %}
 		<div><a href="/">Back</a></div>
 		{{ message }}
@@ -39,20 +15,18 @@
 		Lesson's information: 
 		{{ information }}
         {% for page in listPage %}		
-			<h2><a href="/lessons/view_page/{{lessonID}}/{{ page.pageNumber }}/">{{ page.type }} {{ page.title}}</a>
+			<h2><a href="/lessons/view_page/{{lessonID}}/{{ page.pageNumber }}/">{{ page.type }} {{ page.title}}</a></h2>
 			<a href="/lessons/edit_page/{{lessonID}}/{{ page.pageNumber }}">edit</a>
-			<a href="/lessons/delete_page/{{lessonID}}/{{ page.pageNumber }}"> delete</a></h2>
-			
+			<a href="/lessons/delete_page/{{lessonID}}/{{ page.pageNumber }}"> delete</a>
+			<a href="/lessons/up_page/{{lessonID}}/{{ page.pageNumber }}"> up</a>
+			<a href="/lessons/down_page/{{lessonID}}/{{ page.pageNumber }}"> down</a></h2>
         {% endfor %}	
-
+		</br>
+		<a href="/lessons/view_page/{{lessonID}}/0/">View lesson</a>
 		<div><a href="/lessons/new_page/{{lessonID}}/video">Create video page</a></div>
 		<div><a href="/lessons/new_page/{{lessonID}}/image">Create image page</a></div>
 		<div><a href="/lessons/new_page/{{lessonID}}/document">Create document page</a></div>
 		<div><a href="/lessons/new_page/{{lessonID}}/text">Create text page</a></div>
 	</form>
-	  <div>&nbsp;</div><br />	
-	 </div>
-	</div>
-</body>
-
 {%endblock%}
+</html>

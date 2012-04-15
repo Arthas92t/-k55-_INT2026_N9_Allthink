@@ -7,12 +7,13 @@
 <link rel="stylesheet" href="/static/960.css" />
 
 <head>	
-{%block title %}{%endblock%}
+	<title>{%block title %}{%endblock%}</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 
 {%block account %}{%endblock%}
-</head><body>
+</head>
+<body>
 <div id="header">
 <div class="container_12">
    <div class="grid_6">
@@ -21,16 +22,18 @@
            <img src="/static/img/logo.png" alt="logo" />
         </a></div></div>
    <div class="grid_6">
-        <div class="search"> 
-        <form method="post" action="handler.php">
-            <input name="textfield" type="text" class="colortext"  value="  Search" />
-        </form>
-        </div>
-       <div class="search"> 
-            <form  action="handler.php">
-                <input type="image" class="colortext1" src="/static/img/button.png" alt="/static/img" />
-            </form>
-	   </div>
+		{%block header%}
+			<div class="search"> 
+			<form method="post" action="handler.php">
+				<input name="textfield" type="text" class="colortext"  value="  Search" />
+			</form>
+			</div>
+		   <div class="search"> 
+				<form  action="handler.php">
+					<input type="image" class="colortext1" src="/static/img/button.png" alt="/static/img" />
+				</form>
+		   </div>
+	   {%endblock%}
 	</div>
 </div>
 </div>
@@ -39,57 +42,19 @@
 <div class="container_12">
 <div class="grid_12 top">
     <ul class="nav">
-	<li><a href="#"><strong>HOME</strong></a></li>
-	<li><a href="#"><strong>NEWS</strong></a></li>
-	<li><a href="#"><strong>TUTORIAL</strong></a></li>
-	<li><a href="#"><strong>FAQ</strong></a></li>
-	<li><a href="#"><strong>PROFILE</strong></a></li>
+	{%block menu%}
+		<li><a href="#"><strong>HOME</strong></a></li>
+		<li><a href="#"><strong>NEWS</strong></a></li>
+		<li><a href="#"><strong>TUTORIAL</strong></a></li>
+		<li><a href="#"><strong>FAQ</strong></a></li>
+		<li><a href="#"><strong>PROFILE</strong></a></li>
+	{%endblock%}
     </ul>
 </div>
 </div>
 </div>
 <div class="silver">
-
-<div id="grey">
-<div class="container_12">
-<div class="grid_12 grey"></div>
-<div class="grid_7"><p>This should be a link to tutorial video.</p><img src="/static/img/03.png" alt="/static/img" /></div>
-
-<div class="grid_5">
-<div class="mec"><p class="text1"><u>MEC News</u></p></div>
-<div class="rss"><p><a target="_blank" href=""><img src="/static/img/04.png" alt="/static/img" /></a></p></div>  
-<div class="clear"></div>
-
-<div class="mec"><img src="/static/img/05.png" alt="/static/img" /></div>
-<div><p class="text2">November, 23</p></div>
-<div><p class="text3">Any paragraph</p></div>
-<div class="clear"></div>
-<div class="mec"><img src="/static/img/06.png" alt="/static/img" /></div>
-<div><p class="text2">August, 12</p></div>
-<div><p class="text3">Any paragraph</p></div>
-<div class="clear"></div>
-<div class="mec"><img src="/static/img/07.png" alt="/static/img" /></div>
-<div><p class="text2">August, 12</p></div>
-<div><p class="text3">Any paragraph</p></div>
-</div>
-
-<div class="clear"></div>
-<div class="grid_12 modern"></div>
-<div class="grid_4 jhon"><p class="text">
-    <span class="text4">John Arthur Doe</span><br />
-    <span class="text5">Professor of Philology</span></p>
-</div>
-<div class="gird_8"><p class="text5"><br /><br />Any paragraph</p></div>
-<div class="grid_12 modern1"></div>
-<div class="grid_4 jhon">
-<div class="text5">
-<!--{% block topleft %}{%endblock%}-->
-{% block body %}
-{% endblock%}
-</div>
-</div>
-</div>
-</div>
+{% block body %}{% endblock%}
 
 <div id="middle"><div class="layout">
 <div class="col1"><div class="wrap"><p class="line1"></p></div></div>
@@ -100,13 +65,13 @@
 <div id="grey1">
 <div class="container_12">
 <div class="grid_12 four"></div>
-<div class="grid_3"><span class="text10">Boasting</span></div>
-<div class="grid_3"><span class="text9">Boasting </span></div>
-<div class="grid_3"><span class="text8">Boasting</span></div>
+<div class="grid_3"><span class="text10">Safe and Secure</span></div>
+<div class="grid_3"><span class="text9">Easy and friendly</span></div>
+<div class="grid_3"><span class="text8">Huge amount of class</span></div>
 <div class="grid_3"><span class="text7">Boasting</span></div>
-<div class="grid_3"><p class="text3">Any paragraph.</p></div>
-<div class="grid_3"><p class="text3">Any paragraph.</p></div>
-<div class="grid_3"><p class="text3">Any paragraph.</p></div>
+<div class="grid_3"><p class="text3">All your information is safe with us.</p></div>
+<div class="grid_3"><p class="text3">Various of tutorial and advices for beginner.Don't hesitate to ask!</p></div>
+<div class="grid_3"><p class="text3">Thousands of useful, interesting lectures is here.Just in a few clicks</p></div>
 <div class="grid_3"><p class="text3">Any paragraph.</p></div>
 <div class="grid_12 four"></div>
 </div>

@@ -23,5 +23,10 @@ urlpatterns = patterns('',
 	url(r'^lessons/new_page/(\d+)/([a-z]+)/$', 'lessons.views.newPage'),
 	url(r'^lessons/view_page/(\d+)/(\d+)/$', 'lessons.views.viewPage'),
 	url(r'^lessons/edit_page/(\d+)/(\d+)/$', 'lessons.views.editPage'),
+	url(r'^lessons/delete_page/(\d+)/(\d+)/$', 'lessons.views.deletePage'),
+	url(r'^lessons/up_page/(\d+)/(\d+)/$', 'lessons.views.upPage'),
+	url(r'^lessons/down_page/(\d+)/(\d+)/$', 'lessons.views.downPage'),
+	
+	url(r'^test', 'lessons.views.test'),
 	(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': 'c:/django/AllThink/static/'}),
 )

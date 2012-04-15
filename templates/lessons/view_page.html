@@ -1,79 +1,66 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-{% extends "base.html" %}
+{% extends "index.html" %}
 
 {% load i18n %}
-{%block title%}
-<head>
-	<title>Lesson {{ lessonName }}</title>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-</head>
-{%endblock%}
+{%block title%}Lesson {{ page.lesson.lessonName }}{%endblock%}
+
 {%block body%}
+	{% if page.lesson.user.username == username %}
+		<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
+	{% endif %}
+	Lesson: {{ page.lesson.lessonName }}
+	<div></div>
+	Infomation: {{ page.lesson.information }}
+	<br></br>
+	Page: {{page.title}}
+	<div></div>
+	{{page.text}}
+	<div></div>
+	{% if page.type == 'video' %}
+		<object style="height: 400px; width: 650px">
+			<param name="movie" value="http://www.youtube.com/embed/{{page.linkID}}">
+			<param name="allowFullScreen" value="true">
+			<param name="allowScriptAccess" value="always">
+			<iframe width="560" height="315" src="http://www.youtube.com/embed/{{page.linkID}}" frameborder="0" allowfullscreen></iframe>
+		</object>
+	{% endif%}
 
-<body>
-        <div id="title" style="">
-	 <h3>Education Heaven</h3>
-	</div>
-	
-	<div id="container">
-	
-	 <div id="sidebar">
-	  <div id="menu">
-	   <h1>Main menu</h1>
-	   <a href="/">Home</a><br />
-	   <a href="#">About Us</a><br />
-	   <a href="#">News</a><br />
-	   <a href="#">Contact Us</a><br />
-	   <a href="#">Links</a><br/>
-           <a href="/lessons/new_lesson">Lessons</a>
-	   
-	  </div>
-	 </div>
-	
-	 <div id="content">
-			<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
-			{{page.title}}
-			<div></div>
-			{{page.text}}
-			<div></div>
-			{% if page.type == 'video' %}
-				<object style="height: 400px; width: 650px">
-						<param name="movie" value="{{page.link}}">
-						<param name="allowFullScreen" value="true">
-						<param name="allowScriptAccess" value="always">
-						<iframe width="560" height="315" src="{{page.link}}" frameborder="0" allowfullscreen></iframe>
-					</object>
-			{% endif%}
-			{% if page.type == 'image' %}
-				<img src="{{page.link}}"/> 
-			{% endif%}
-			{% if page.type == 'document' %}
-				<div class="table main" id="lessonpage1">
-					<!-- VIDEO -->
-						<div class="lessonbody">
-					<script type="text/javascript" src='http://www.scribd.com/javascripts/view.js'></script>
-					
-					<div id='embedded_flash_'>&nbsp;</div>
-					
-					<script type="text/javascript">
-						var scribd_doc = scribd.Document.getDocFromUrl('{{page.link}}', 'pub-7472552939580245272');
-						
-						scribd_doc.addParam('jsapi_version', 1);
-						scribd_doc.addParam('height', 500);
-						scribd_doc.addParam('width', 650);
-						scribd_doc.addParam('public', true);
-						scribd_doc.addParam('mode', 'slide');
-						scribd_doc.addParam('disable_related_docs', true);
-						scribd_doc.addParam('hide_disabled_buttons', true);
-						scribd_doc.addParam('disable_resume_reading', true);
-						
-						scribd_doc.write('embedded_flash_');
-					</script>
-				</div>
-			{% endif%}
-	 </div>
-	</div>
-</body>
+	{% if page.type == 'image' %}
+		<img src="{{page.link}}"/> 
+	{% endif%}
 
+	{% if page.type == 'document' %}
+		<script type="text/javascript" src='http://www.scribd.com/javascripts/view.js'></script>
+		<div id='embedded_flash_'>&nbsp;</div>
+		<script type="text/javascript">
+			var scribd_doc = scribd.Document.getDocFromUrl('{{page.link}}', 'pub-7472552939580245272');
+			scribd_doc.addParam('jsapi_version', 1);
+			scribd_doc.addParam('height', 500);
+			scribd_doc.addParam('width', 650);
+			scribd_doc.addParam('public', true);
+			scribd_doc.addParam('mode', 'slide');
+			scribd_doc.addParam('disable_related_docs', true);
+			scribd_doc.addParam('hide_disabled_buttons', true);
+			scribd_doc.addParam('disable_resume_reading', true);
+			scribd_doc.write('embedded_flash_');
+		</script>
+	{% endif%}
+
+	{% if page.type == 'step' %}
+		{%for i in page.setStep%}
+			<button type="button">
+				{{i.a}}
+				{{i.b}}
+		{%endfor%}
+		{%for i in page.setStep%}
+			</button>
+		{%endfor%}
+	{% endif%}
+	{% if nextPage %}
+		<div><a href="/lessons/view_page/{{lessonID}}/{{ nextPage }}/">Next page</a></div>
+	{%endif%}
+	{%for i in listPage %}
+		<div><a href="/lessons/view_page/{{lessonID}}/{{ i.pageNumber }}/">{{ i.type }} {{ i.title}}</a></div>
+	{%endfor%}
 {%endblock%}
