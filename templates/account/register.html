@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+{% extends "base.html" %}
+
+{% load i18n %}
+{%block title%}
+<head>
+
+  <title>Register</title>
+  
+<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <link href="/static/main.css" rel="stylesheet" type="text/css" />
+</head>
+{%endblock%}
+{%block body%}
+
+<body>	
+	 <div class="text3">
+	
+	  <div><a href="/">Back</a></div>
+
+        <p>Join one of the biggest community in the world !</p>
+	{{ state }}
+
+	<form action="/register/" method="post">{% csrf_token %}
+	
+		<table>{{formReg.as_table}}</table>
+
+		<input type="submit" value="register" />
+
+	</form>
+	</div>
+	</div>
+</body>
+
+{%endblock%}
+
+</html>

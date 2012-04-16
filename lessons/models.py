@@ -3,7 +3,27 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core import validators
+
+from django.shortcuts import render_to_response
+from django.http import HttpResponse, HttpResponseRedirect
 # Create your models here.
+
+def lessonPermission(request, lesson):
+	return request.user == lesson.user
+	
+def pagePermission(request, page):
+	return request.user == page.lesson.user
+
+def get_lesson(lessonID = 0, lessonName =''):
+	if cmp(lessonName,'') != 0:
+		try:              
+			return Lesson.objects.get(lessonName=lessonName)
+		except Lesson.DoesNotExist:
+			return None
+	try:
+		return Lesson.objects.get(pk=lessonID)
+	except Lesson.DoesNotExist:
+		return None
 
 class Lesson(models.Model):
 	user = models.ForeignKey(User)
@@ -13,32 +33,24 @@ class Lesson(models.Model):
 	def __unicode__(self):
 		return self.lessonName
 	
-	def addPage(self, form, type):
+	def addPage(self, request, type):
 		if type == 'video':
 			newPage = VideoPage()
-			newPage.link = form.cleaned_data['link']
 		if type == 'image':
 			newPage = ImagePage()
-			newPage.link = form.cleaned_data['link']
 		if type == 'document':
 			newPage = DocumentPage()
-			newPage.link = form.cleaned_data['link']
 		if type == 'text':
 			newPage = TextPage()
 		if type == 'step':
 			newPage = StepPage()
-			newPage.length = form.cleaned_data['length']
-			
-			
+
 		newPage.lesson = self
-		newPage.title = form.cleaned_data['title']
-		newPage.text = form.cleaned_data['text']
 		newPage.type = type
 		newPage.pageNumber = self.len()
 		
-		newPage.save()
-		self.save()
-
+		return newPage.editPage(request, self.id)
+		
 	def getAllPage(self):
 		listPage = []
 		for i in self.videopage_set.all():
@@ -60,7 +72,7 @@ class Lesson(models.Model):
 		return listPage
 	
 	def len(self):
-		return self.getAllPage()
+		return len(self.getAllPage())
 		
 	def getPage(self, number):
 		return self.getAllPage()[int(number)]
@@ -82,8 +94,25 @@ class VideoPage(models.Model):
 	
 	def __unicode__(self):
 		return self.title
+	
 	def linkID(self):
 		return self.link[(len(self.link) - 11):]
+
+	def editPage(self, request, lessonID):
+		formNewPage = FormVideoPage(initial={'title': self.title, 'link': self.link, 'text': self.text})
+		
+		if request.POST:
+			formPage = FormVideoPage(request.POST)
+			if formPage.is_valid():
+				self.link = formPage.cleaned_data['link']
+				self.title = formPage.cleaned_data['title']
+				self.text = formPage.cleaned_data['text']
+				self.save()
+				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+		return render_to_response('lessons/new_page.html',{'username': request.user.username,
+			'lessonID':lessonID, 'form':formNewPage,
+			'type': type,
+			})
 
 class FormImagePage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -103,6 +132,23 @@ class ImagePage(models.Model):
 	def __unicode__(self):
 		return self.title
 
+	def editPage(self, request, lessonID):
+		formNewPage = FormImagePage(initial={'title': self.title, 'link': self.link, 'text': self.text})
+		
+		if request.POST:
+			formPage = FormImagePage(request.POST)
+			if formPage.is_valid():
+				if not (type == 'text'):
+					self.link = formPage.cleaned_data['link']
+				self.title = formPage.cleaned_data['title']
+				self.text = formPage.cleaned_data['text']
+				self.save()
+				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+		return render_to_response('lessons/new_page.html',{'username': request.user.username,
+			'lessonID':lessonID, 'form':formNewPage,
+			'type': type,
+			})
+
 class FormDocumentPage(forms.Form):
 	title = forms.CharField(max_length=200)
 	link = forms.CharField(max_length = 1000, label = 'Document URL')
@@ -121,6 +167,22 @@ class DocumentPage(models.Model):
 	def __unicode__(self):
 		return self.title
 
+	def editPage(self, request, lessonID):
+		formNewPage = FormDocumentPage(initial={'title': self.title, 'link': self.link, 'text': self.text})
+		
+		if request.POST:
+			formPage = FormDocumentPage(request.POST)
+			if formPage.is_valid():
+				self.link = formPage.cleaned_data['link']
+				self.title = formPage.cleaned_data['title']
+				self.text = formPage.cleaned_data['text']
+				self.save()
+				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+		return render_to_response('lessons/new_page.html',{'username': request.user.username,
+			'lessonID':lessonID, 'form':formNewPage,
+			'type': type,
+			})
+
 class FormTextPage(forms.Form):
 	title = forms.CharField(max_length=200)
 	text = forms.CharField(max_length = 1000, label = 'Text')
@@ -136,6 +198,20 @@ class TextPage(models.Model):
 	
 	def __unicode__(self):
 		return self.title
+	def editPage(self, request, lessonID):
+		formNewPage = FormTextPage(initial={'title': self.title, 'text': self.text})
+		
+		if request.POST:
+			formPage = FormTextPage(request.POST)
+			if formPage.is_valid():
+				self.title = formPage.cleaned_data['title']
+				self.text = formPage.cleaned_data['text']
+				self.save()
+				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+		return render_to_response('lessons/new_page.html',{'username': request.user.username,
+			'lessonID':lessonID, 'form':formNewPage,
+			'type': type,
+			})
 
 class FormStepPage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -166,7 +242,7 @@ class StepPage(models.Model):
 
 	def __unicode__(self):
 		return self.title
-
+	
 class FormStep(forms.Form):
 	a = forms.CharField(max_length= 1000, label = 'a')
 	b = forms.CharField(max_length = 1000, label = 'b')

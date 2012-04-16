@@ -7,23 +7,6 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from lessons.models import *
-	
-def lessonPermission(request, lesson):
-	return request.user == lesson.user
-	
-def pagePermission(request, page):
-	return request.user == page.lesson.user
-
-def get_lesson(lessonID = 0, lessonName =''):
-	if cmp(lessonName,'') != 0:
-		try:              
-			return Lesson.objects.get(lessonName=lessonName)
-		except Lesson.DoesNotExist:
-			return None
-	try:
-		return Lesson.objects.get(pk=lessonID)
-	except Lesson.DoesNotExist:
-		return None
 
 def createLesson(request):
 	if not request.user.is_authenticated():
@@ -75,28 +58,7 @@ def newPage(request, lessonID, type):
 	if( not lessonPermission(request, lesson)):
 		return render_to_response('error/permission_deny.html')
 
-	if type == 'video':
-		formNewPage = FormVideoPage()
-	if type == 'image':
-		formNewPage = FormImagePage()
-	if type == 'document':
-		formNewPage = FormDocumentPage()
-	if type == 'text':
-		formNewPage = FormTextPage()
-	
-	if request.POST:
-		if type == 'video':
-			formNewPage = FormVideoPage(request.POST)
-		if type == 'image':
-			formNewPage = FormImagePage(request.POST)
-		if type == 'document':
-			formNewPage = FormDocumentPage(request.POST)
-		if type == 'text':
-			formNewPage = FormTextPage(request.POST)
-		if formNewPage.is_valid():
-			lesson.addPage(request, type)
-			return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-	return render_to_response('lessons/new_page.html',{'username': request.user.username,'lessonID':lessonID, 'form':formNewPage, 'type': type})
+	return	lesson.addPage(request, type)
 
 def editPage(request, lessonID, pageNumber):
 	if not request.user.is_authenticated():
@@ -112,37 +74,7 @@ def editPage(request, lessonID, pageNumber):
 	if( not pagePermission(request, page)):
 		return render_to_response('error/permission_deny.html')
 
-	if page.type == 'video':
-		formNewPage = FormVideoPage(initial={'title': page.title, 'link': page.link, 'text': page.text})
-	if page.type == 'image':
-		formNewPage = FormImagePage(initial={'title': page.title, 'link': page.link, 'text': page.text})
-	if page.type == 'document':
-		formNewPage = FormDocumentPage(initial={'title': page.title, 'link': page.link, 'text': page.text})
-	if page.type == 'text':
-		formNewPage = FormTextPage(initial={'title': page.title, 'text': page.text})
-	if page.type == 'step':
-		formNewPage = FormStepPage(initial={'title': page.title, 'text': page.text})
-	
-	if request.POST:
-		if page.type == 'video':
-			formPage = FormVideoPage(request.POST)
-		if page.type == 'image':
-			formPage = FormImagePage(request.POST)
-		if page.type == 'document':
-			formPage = FormDocumentPage(request.POST)
-		if page.type == 'text':
-			formPage = FormTextPage(request.POST)
-		if formPage.is_valid():
-			if not (type == 'text'):
-				page.link = formPage.cleaned_data['link']
-			page.title = formPage.cleaned_data['title']
-			page.text = formPage.cleaned_data['text']
-			page.save()
-			return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-	return render_to_response('lessons/new_page.html',{'username': request.user.username,
-		'lessonID':lessonID, 'form':formNewPage,
-		'type': type,
-		})
+	return page.editPage(request, lessonID)
 
 def viewPage(request, lessonID, pageNumber):
 	if not request.user.is_authenticated():

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+{% extends "base.html" %}
+
+{% load i18n %}
+{%block title%}
+<head>
+	<title>Lesson {{ lessonName }}</title>
+	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+</head>
+{%endblock%}
+{%block body%}
+
+<body>
+	
+	 <div class="text3">
+	
+		<form action="/lessons/edit_lesson/{{lessonID}}/" " method="post">
+			<div><a href="/">Back</a></div>
+			{{ message }}
+			Lesson's name: {{ lessonName }}
+			<div></div>
+			Lesson's information: {{information}}
+		</form>
+	  <div>&nbsp;</div><br />	
+	 </div>
+</body>
+
+{%endblock%}
