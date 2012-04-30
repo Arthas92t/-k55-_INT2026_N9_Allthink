@@ -7,7 +7,7 @@
 
 {%block body%}
 	{% if page.lesson.user.username == username %}
-		<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
+		<a href="/lessons/edit_lesson/{{lessonID}}/">Back</a>
 	{% endif %}
 	Lesson: {{ page.lesson.lessonName }}
 	<div></div>
@@ -25,37 +25,113 @@
 			<iframe width="560" height="315" src="http://www.youtube.com/embed/{{page.linkID}}" frameborder="0" allowfullscreen></iframe>
 		</object>
 	{% endif%}
-
 	{% if page.type == 'image' %}
 		<img src="{{page.link}}"/> 
 	{% endif%}
-
 	{% if page.type == 'document' %}
-		<script type="text/javascript" src='http://www.scribd.com/javascripts/view.js'></script>
-		<div id='embedded_flash_'>&nbsp;</div>
-		<script type="text/javascript">
-			var scribd_doc = scribd.Document.getDocFromUrl('{{page.link}}', 'pub-7472552939580245272');
-			scribd_doc.addParam('jsapi_version', 1);
-			scribd_doc.addParam('height', 500);
-			scribd_doc.addParam('width', 650);
-			scribd_doc.addParam('public', true);
-			scribd_doc.addParam('mode', 'slide');
-			scribd_doc.addParam('disable_related_docs', true);
-			scribd_doc.addParam('hide_disabled_buttons', true);
-			scribd_doc.addParam('disable_resume_reading', true);
-			scribd_doc.write('embedded_flash_');
-		</script>
+		<iframe src="http://docs.google.com/gview?url=http://127.0.0.1:8000{{page.link}}&embedded=true" style="width:600px; height:500px;" frameborder="0">
+		</iframe>
 	{% endif%}
-
 	{% if page.type == 'step' %}
-		{%for i in page.setStep%}
-			<button type="button">
-				{{i.a}}
-				{{i.b}}
-		{%endfor%}
-		{%for i in page.setStep%}
-			</button>
-		{%endfor%}
+		{% if page.step1 %}
+			{{page.step1}}
+			{{page.explanation1}}
+		{%endif%}
+		<br></br>
+		{% if page.step2 %}
+			{{page.step2}}
+			{{page.explanation2}}
+		{%endif%}
+		<br></br>
+		{% if page.step3 %}
+			{{page.step3}}
+			{{page.explanation3}}
+		{%endif%}
+		<br></br>
+		{% if page.step4 %}
+			{{page.step4}}
+			{{page.explanation4}}
+		{%endif%}
+		<br></br>
+		{% if page.step5 %}
+			{{page.step5}}
+			{{page.explanation5}}
+		{%endif%}
+		<br></br>
+		{% if page.step6 %}
+			{{page.step6}}
+			{{page.explanation6}}
+		{%endif%}
+		<br></br>
+		{% if page.step7 %}
+			{{page.step7}}
+			{{page.explanation7}}
+		{%endif%}
+		<br></br>
+		{% if page.step8 %}
+			{{page.step8}}
+			{{page.explanation8}}
+		{%endif%}
+		<br></br>
+		{% if page.step9 %}
+			{{page.step9}}
+			{{page.explanation9}}
+		{%endif%}
+		<br></br>
+		{% if page.step10 %}
+			{{page.step10}}
+			{{page.explanation10}}
+		{%endif%}
+		<br></br>
+		{% if page.step11 %}
+			{{page.step11}}
+			{{page.explanation11}}
+		{%endif%}
+		<br></br>
+		{% if page.step12 %}
+			{{page.step12}}
+			{{page.explanation12}}
+		{%endif%}
+		<br></br>
+		{% if page.step13 %}
+			{{page.step13}}
+			{{page.explanation13}}
+		{%endif%}
+		<br></br>
+		{% if page.step14 %}
+			{{page.step14}}
+			{{page.explanation14}}
+		{%endif%}
+		<br></br>
+		{% if page.step15 %}
+			{{page.step15}}
+			{{page.explanation15}}
+		{%endif%}
+		<br></br>
+		{% if page.step16 %}
+			{{page.step16}}
+			{{page.explanation16}}
+		{%endif%}
+		<br></br>
+		{% if page.step17 %}
+			{{page.step17}}
+			{{page.explanation17}}
+		{%endif%}
+		<br></br>
+		{% if page.step18 %}
+			{{page.step18}}
+			{{page.explanation18}}
+		{%endif%}
+		<br></br>
+		{% if page.step19 %}
+			{{page.step19}}
+			{{page.explanation19}}
+		{%endif%}
+		<br></br>
+		{% if page.step20 %}
+			{{page.step20}}
+			{{page.explanation20}}
+		{%endif%}
 	{% endif%}
 	{% if nextPage %}
 		<div><a href="/lessons/view_page/{{lessonID}}/{{ nextPage }}/">Next page</a></div>

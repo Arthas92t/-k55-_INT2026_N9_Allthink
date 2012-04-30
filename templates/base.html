@@ -1,145 +1,226 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link rel="stylesheet" type="text/css" href="/static/styles.css" />
-<link rel="stylesheet" href="/static/text.css" />
-<link rel="stylesheet" href="/static/960.css" />
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" xml:lang="en-US" lang="en-US"><head profile="http://gmpg.org/xfn/11">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>{%block title%}Sample Page — Genesis Framework{%endblock%}</title>
+<meta name="robots" content="noodp,noydir">
+<link rel="Shortcut Icon" href="http://demo.studiopress.com/wp-content/themes/genesis/images/favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="/static/style.css" type="text/css" media="screen">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><link rel="alternate" type="application/rss+xml" title="Genesis Framework » Feed" href="http://demo.studiopress.com/feed">
+<link rel="alternate" type="application/rss+xml" title="Genesis Framework » Comments Feed" href="http://demo.studiopress.com/comments/feed">
+<link rel="canonical" href="http://demo.studiopress.com/sample">
+<link rel="stylesheet" id="colorbox-theme1-css" href="/static/colorbox.css" type="text/css" media="screen">
+<script type="text/javascript" src="/static/jquery_002.js"></script>
+<script type="text/javascript" src="/static/jquery.js"></script>
+<script type="text/javascript" src="/static/comment-reply.js"></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://demo.studiopress.com/xmlrpc.php?rsd">
+<link rel="pingback" href="http://demo.studiopress.com/xmlrpc.php">
+<!-- jQuery Lightbox For Native Galleries v3.1.3 | http://www.viper007bond.com/wordpress-plugins/jquery-lightbox-for-native-galleries/ -->
+<script type="text/javascript">
+// <![CDATA[
+	jQuery(document).ready(function($){
+		$(".gallery").each(function(index, obj){
+			var galleryid = Math.floor(Math.random()*10000);
+			$(obj).find("a").colorbox({rel:galleryid, maxWidth:"95%", maxHeight:"95%"});
+		});
+		$("a.lightbox").colorbox({maxWidth:"95%", maxHeight:"95%"});
+	});
+// ]]>
+</script>
+{%block account%}{%endblock%}
+<style type="text/css" id="wrc-middle-css">.wrc_whole_window{	display: none; 	position: fixed; 	z-index: 2147483647;	background-color: rgba(40, 40, 40, 0.9);	word-spacing: normal;	margin: 0px;	padding: 0px;	border: 0px;	line-height: normal;	letter-spacing: normal;}.wrc_middle_main {	font-family: Segoe UI, Arial Unicode MS, Arial, Sans-Serif;	font-size: 14px;	width: 600px;	height: auto;	margin: 0px auto;	margin-top: 15%;    background: url("chrome://wrc/skin/png/background-body.png");	background-color: rgb(39, 53, 62);}.wrc_middle_logo {    background: url("chrome://wrc/skin/logo.jpg") no-repeat left bottom;    width: 140px;    height: 42px;    color: orange;    display: table-cell;    text-align: right;    vertical-align: middle;}.wrc_icon_warning {	margin: 20px 10px 20px 15px;	float: left;	background-color: transparent;}.wrc_middle_title {    color: #b6bec7;	height: auto;    margin: 0px auto;	font-size: 2.2em;	white-space: nowrap;	text-align: center;}.wrc_middle_hline {    height: 2px;	width: 100%;    display: block;}.wrc_middle_description {	text-align: center;	margin: 15px;	font-size: 1.4em;	padding: 20px;	height: auto;	color: white;	min-height: 3.5em;}.wrc_middle_actions_main_div {	text-align: center;	margin-bottom: 15px;}.wrc_middle_actions_blue_button {	-moz-appearance: none;	border-radius: 7px;	-moz-border-radius: 7px/7px;	border-radius: 7px/7px;	background-color: rgb(0, 173, 223) !important;	display: inline-block;	width: auto;	cursor: Pointer;	border: 2px solid #00dddd;	text-decoration: none;}.wrc_middle_actions_blue_button:hover {	background-color: rgb(0, 159, 212) !important;}.wrc_middle_actions_blue_button:active {	background-color: rgb(0, 146, 200) !important;	border: 2px solid #00aaaa;}.wrc_middle_actions_blue_button div {	display: inline-block;	width: auto;	cursor: Pointer;	margin: 3px 10px 3px 10px;	color: white !important;	font-size: 1.2em;	font-weight: bold;}.wrc_middle_action_low {	font-size: 0.9em;	white-space: nowrap;	cursor: Pointer;	color: grey !important;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action_low:hover {	color: #aa4400 !important;}.wrc_middle_actions_rest_div {	padding-top: 5px;	white-space: nowrap;	text-align: center;}.wrc_middle_action {	white-space: nowrap;	cursor: Pointer;	color: red !important;	font-size: 1.2em;	margin: 10px 10px 0px 10px;	text-decoration: none;}.wrc_middle_action:hover {	color: #aa4400 !important;}</style><script language="JavaScript" type="text/javascript" id="wrc-script-middle_window">var g_inputsCnt = 0;var g_InputThis = new Array(null, null, null, null);var g_alerted = false;/* we test the input if it includes 4 digits   (input is a part of 4 inputs for filling the credit-card number)*/function is4DigitsCardNumber(val){	var regExp = new RegExp('[0-9]{4}');	return (val.length == 4 && val.search(regExp) == 0);}/* testing the whole credit-card number 19 digits devided by three '-' symbols or   exactly 16 digits without any dividers*/function isCreditCardNumber(val){	if(val.length == 19)	{		var regExp = new RegExp('[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}');		return (val.search(regExp) == 0);	}	else if(val.length == 16)	{		var regExp = new RegExp('[0-9]{4}[0-9]{4}[0-9]{4}[0-9]{4}');		return (val.search(regExp) == 0);	}	return false;}function CheckInputOnCreditNumber(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'text')	{		if(is4DigitsCardNumber(value))		{			var cont = true;			for(i = 0; i < g_inputsCnt; i++)				if(g_InputThis[i] == self)					cont = false;			if(cont && g_inputsCnt < 4)			{				g_InputThis[g_inputsCnt] = self;				g_inputsCnt++;			}		}		g_alerted = (g_inputsCnt == 4);		if(g_alerted)			g_inputsCnt = 0;		else			g_alerted = isCreditCardNumber(value);	}	return g_alerted;}function CheckInputOnPassword(self){	if(g_alerted)		return false;	var value = self.value;	if(self.type == 'password')	{		g_alerted = (value.length > 0);	}	return g_alerted;}function onInputBlur(self, bRatingOk, bFishingSite){	var bCreditNumber = CheckInputOnCreditNumber(self);	var bPassword = CheckInputOnPassword(self);	if((!bRatingOk || bFishingSite == 1) && (bCreditNumber || bPassword) )	{		var warnDiv = document.getElementById("wrcinputdiv");		if(warnDiv)		{			/* show the warning div in the middle of the screen */			warnDiv.style.left = "0px";			warnDiv.style.top = "0px";			warnDiv.style.width = "100%";			warnDiv.style.height = "100%";			document.getElementById("wrc_warn_fs").style.display = 'none';			document.getElementById("wrc_warn_cn").style.display = 'none';			if(bFishingSite)				document.getElementById("wrc_warn_fs").style.display = 'block';			else				document.getElementById("wrc_warn_cn").style.display = 'block';			warnDiv.style.display = 'block';		}	}}</script></head>
+<body class="page page-id-38 page-parent page-template-default content-sidebar"><div style="display: none;" id="cboxOverlay"></div><div style="padding-bottom: 42px; padding-right: 42px; display: none;" class="" id="colorbox"><div id="cboxWrapper"><div><div style="float: left;" id="cboxTopLeft"></div><div style="float: left;" id="cboxTopCenter"></div><div style="float: left;" id="cboxTopRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxMiddleLeft"></div><div style="float: left;" id="cboxContent"><div class="" id="cboxLoadedContent" style="width: 0pt; height: 0pt; overflow: hidden;"></div><div class="" id="cboxLoadingOverlay"></div><div class="" id="cboxLoadingGraphic"></div><div class="" id="cboxTitle"></div><div class="" id="cboxCurrent"></div><div class="" id="cboxNext"></div><div class="" id="cboxPrevious"></div><div class="" id="cboxSlideshow"></div><div class="" id="cboxClose"></div></div><div style="float: left;" id="cboxMiddleRight"></div></div><div style="clear: left;"><div style="float: left;" id="cboxBottomLeft"></div><div style="float: left;" id="cboxBottomCenter"></div><div style="float: left;" id="cboxBottomRight"></div></div></div><div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div></div>
+<div id="wrap">
+<div id="header"><div class="wrap"><div id="title-area"><p id="title"><a href="http://demo.studiopress.com/">{% block title1%}Genesis Framework{%endblock%}</a></p><p id="description">The Industry Standard of WordPress Design Frameworks</p></div><!-- end #title-area --><div class="widget-area"><div id="search-3" class="widget widget_search"><div class="widget-wrap">
+		<form method="get" class="searchform" action="http://demo.studiopress.com/">
+			
+			<input value="Search this website …" name="s" class="s" onfocus="if (this.value == 'Search this website …') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search this website …';}" type="text">
+			<input class="searchsubmit" value="Search" type="submit">
+		</form>
+	</div></div>
+</div><!-- end .widget-area --></div><!-- end .wrap --></div><!--end #header--><div id="nav"><div class="wrap"><ul id="menu-primary-navigation" class="menu menu-primary superfish sf-js-enabled"><li id="menu-item-246" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-246"><a href="http://demo.studiopress.com/">Home</a></li>
+<li id="menu-item-211" class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-38 current_page_item menu-item-211"><a class="sf-with-ul" href="http://demo.studiopress.com/sample">Sample Page<span class="sf-sub-indicator"> »</span></a>
+<ul style="display: none; visibility: hidden;" class="sub-menu">
+	<li id="menu-item-212" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-212"><a class="sf-with-ul" href="http://demo.studiopress.com/sample/sub-page-11">Sub Page 1.1<span class="sf-sub-indicator"> »</span></a>
+	<ul style="display: none; visibility: hidden;" class="sub-menu">
+		<li id="menu-item-215" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-215"><a class="sf-with-ul" href="http://demo.studiopress.com/sample/sub-page-11/sub-page-21">Sub Page 2.1<span class="sf-sub-indicator"> »</span></a>
+		<ul style="display: none; visibility: hidden;" class="sub-menu">
+			<li id="menu-item-218" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-218"><a href="http://demo.studiopress.com/sample/sub-page-11/sub-page-21/sub-page-31">Sub Page 3.1</a></li>
+			<li id="menu-item-219" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-219"><a href="http://demo.studiopress.com/sample/sub-page-11/sub-page-21/sub-page-32">Sub Page 3.2</a></li>
+			<li id="menu-item-220" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-220"><a href="http://demo.studiopress.com/sample/sub-page-11/sub-page-21/sub-page-33">Sub Page 3.3</a></li>
+		</ul>
+</li>
+		<li id="menu-item-216" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-216"><a href="http://demo.studiopress.com/sample/sub-page-11/sub-page-22">Sub Page 2.2</a></li>
+		<li id="menu-item-217" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-217"><a href="http://demo.studiopress.com/sample/sub-page-11/sub-page-23">Sub Page 2.3</a></li>
+	</ul>
+</li>
+	<li id="menu-item-213" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-213"><a href="http://demo.studiopress.com/sample/sub-page-12">Sub Page 1.2</a></li>
+	<li id="menu-item-214" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-214"><a href="http://demo.studiopress.com/sample/sub-page-13">Sub Page 1.3</a></li>
+</ul>
+</li>
+<li id="menu-item-244" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-244"><a class="sf-with-ul" href="#">Page Layouts<span class="sf-sub-indicator"> »</span></a>
+<ul style="display: none; visibility: hidden;" class="sub-menu">
+	<li id="menu-item-206" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-206"><a href="http://demo.studiopress.com/layouts/cs">Content/Sidebar</a></li>
+	<li id="menu-item-221" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-221"><a href="http://demo.studiopress.com/layouts/sc">Sidebar/Content</a></li>
+	<li id="menu-item-207" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-207"><a href="http://demo.studiopress.com/layouts/css">Content/Sidebar/Sidebar</a></li>
+	<li id="menu-item-223" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-223"><a href="http://demo.studiopress.com/layouts/ssc">Sidebar/Sidebar/Content</a></li>
+	<li id="menu-item-222" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-222"><a href="http://demo.studiopress.com/layouts/scs">Sidebar/Content/Sidebar</a></li>
+	<li id="menu-item-208" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-208"><a href="http://demo.studiopress.com/layouts/fwc">Full Width Content</a></li>
+</ul>
+</li>
+<li id="menu-item-245" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-245"><a class="sf-with-ul" href="#">Page Templates<span class="sf-sub-indicator"> »</span></a>
+<ul style="display: none; visibility: hidden;" class="sub-menu">
+	<li id="menu-item-203" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-203"><a href="http://demo.studiopress.com/templates/archive">Archive Page</a></li>
+	<li id="menu-item-204" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-204"><a href="http://demo.studiopress.com/templates/blog">Blog Page</a></li>
+</ul>
+</li>
+<li id="menu-item-205" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-205"><a href="http://demo.studiopress.com/classes/columns">Column Classes</a></li>
+<li id="menu-item-224" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-224"><a href="http://demo.studiopress.com/contact">Contact Page</a></li>
+<li class="right date">April 12, 2012</li></ul></div><!-- end .wrap --></div><div id="subnav"><div class="wrap"><ul id="menu-secondary-navigation" class="menu menu-secondary superfish sf-js-enabled"><li id="menu-item-23" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-23"><a href="http://demo.studiopress.com/blog/category/category-1">Category #1</a></li>
+<li id="menu-item-24" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-24"><a class="sf-with-ul" href="http://demo.studiopress.com/blog/category/category-2">Category #2<span class="sf-sub-indicator"> »</span></a>
+<ul style="display: none; visibility: hidden;" class="sub-menu">
+	<li id="menu-item-28" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-28"><a class="sf-with-ul" href="http://demo.studiopress.com/blog/category/category-1/sub-category-11">Sub Category 1.1<span class="sf-sub-indicator"> »</span></a>
+	<ul style="display: none; visibility: hidden;" class="sub-menu">
+		<li id="menu-item-31" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-31"><a class="sf-with-ul" href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-21">Sub Category 2.1<span class="sf-sub-indicator"> »</span></a>
+		<ul style="display: none; visibility: hidden;" class="sub-menu">
+			<li id="menu-item-34" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-34"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-21/sub-category-31">Sub Category 3.1</a></li>
+			<li id="menu-item-35" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-35"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-21/sub-category-32">Sub Category 3.2</a></li>
+			<li id="menu-item-36" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-36"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-21/sub-category-33">Sub Category 3.3</a></li>
+		</ul>
+</li>
+		<li id="menu-item-32" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-32"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-22">Sub Category 2.2</a></li>
+		<li id="menu-item-33" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-33"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-11/sub-category-23">Sub Category 2.3</a></li>
+	</ul>
+</li>
+	<li id="menu-item-29" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-29"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-12">Sub Category 1.2</a></li>
+	<li id="menu-item-30" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-30"><a href="http://demo.studiopress.com/blog/category/category-1/sub-category-13">Sub Category 1.3</a></li>
+</ul>
+</li>
+<li id="menu-item-25" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-25"><a href="">Category #3</a></li>
+<li id="menu-item-26" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-26"><a href="http://demo.studiopress.com/blog/category/category-4">Category #4</a></li>
+<li id="menu-item-27" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-27"><a href="http://demo.studiopress.com/blog/category/category-5">Category #5</a></li>
+</ul></div><!-- end .wrap --></div><div id="inner">	<div id="content-sidebar-wrap">
+				<div id="content" class="hfeed">
+				<div class="post-38 page type-page status-publish hentry">
 
-<head>	
-	<title>{%block title %}{%endblock%}</title>
-	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-</head>
+				<h1 class="entry-title">Sample Page</h1>
+		
+				<div class="entry-content">{%block body%}
+			<p>This is an example of a WordPress page, you could edit this to put
+ information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress. This is an 
+example of a WordPress page, you could edit this to put information 
+about yourself or your site so readers know where you are coming from. 
+You can create as many pages like this one or sub-pages as you like and 
+manage all of your content inside of WordPress.</p>
+<p>This is an example of a WordPress page, you could edit this to put 
+information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress.</p>
+<p>This is an example of a WordPress page, you could edit this to put 
+information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress. This is an 
+example of a WordPress page, you could edit this to put information 
+about yourself or your site so readers know where you are coming from. 
+You can create as many pages like this one or sub-pages as you like and 
+manage all of your content inside of WordPress.</p>
+<p>This is an example of a WordPress page, you could edit this to put 
+information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress.</p>
+<p>This is an example of a WordPress page, you could edit this to put 
+information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress. This is an 
+example of a WordPress page, you could edit this to put information 
+about yourself or your site so readers know where you are coming from. 
+You can create as many pages like this one or sub-pages as you like and 
+manage all of your content inside of WordPress.</p>
+<p>This is an example of a WordPress page, you could edit this to put 
+information about yourself or your site so readers know where you are 
+coming from. You can create as many pages like this one or sub-pages as 
+you like and manage all of your content inside of WordPress.</p>
+		{%endblock%}</div><!-- end .entry-content -->
+		
+	</div><!-- end .postclass -->
+			</div><!-- end #content -->
+		<div id="sidebar" class="sidebar widget-area">
+<div id="categories-3" class="widget widget_categories">
+<div class="widget-wrap"><h4 class="widgettitle">Categories</h4>
+<select name="cat" id="cat" class="postform">
+	<option selected="selected" value="-1">Select Category</option>
+	<option class="level-0" value="3">Category #1</option>
+	<option class="level-1" value="8">&nbsp;&nbsp;&nbsp;Sub Category 1.1</option>
+	<option class="level-2" value="11">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 2.1</option>
+	<option class="level-3" value="14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 3.1</option>
+	<option class="level-3" value="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 3.2</option>
+	<option class="level-3" value="16">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 3.3</option>
+	<option class="level-2" value="12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 2.2</option>
+	<option class="level-2" value="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sub Category 2.3</option>
+	<option class="level-1" value="9">&nbsp;&nbsp;&nbsp;Sub Category 1.2</option>
+	<option class="level-1" value="10">&nbsp;&nbsp;&nbsp;Sub Category 1.3</option>
+	<option class="level-0" value="4">Category #2</option>
+	<option class="level-0" value="5">Category #3</option>
+	<option class="level-0" value="6">Category #4</option>
+	<option class="level-0" value="7">Category #5</option>
+</select>
 
-{%block account %}{%endblock%}
-</head>
-<body>
-<div id="header">
-<div class="container_12">
-   <div class="grid_6">
-        <div class=" logo">
-        <a target="_blank" href="">
-           <img src="/static/img/logo.png" alt="logo" />
-        </a></div></div>
-   <div class="grid_6">
-		{%block header%}
-			<div class="search"> 
-			<form method="post" action="handler.php">
-				<input name="textfield" type="text" class="colortext"  value="  Search" />
+<script type="text/javascript">
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://demo.studiopress.com/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</div></div>
+<div id="enews-3" class="widget enews-widget"><div class="widget-wrap"><div class="enews"><h4 class="widgettitle">Email Newsletter</h4>
+<p>Sign up to receive email updates and to hear what's going on with our company!</p>
+			<form id="subscribe" action="http://feedburner.google.com/fb/a/mailverify" method="post" target="popupwindow" onsubmit="window.open( 'http://feedburner.google.com/fb/a/mailverify?uri=studiopress', 'popupwindow', 'scrollbars=yes,width=550,height=520');return true">
+				<input value="Enter your email address..." id="subbox" onfocus="if ( this.value == 'Enter your email address...') { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = 'Enter your email address...'; }" name="email" type="text">
+				<input name="uri" value="studiopress" type="hidden">
+				<input name="loc" value="en_US" type="hidden">
+				<input value="Go" id="subbutton" type="submit">
 			</form>
-			</div>
-		   <div class="search"> 
-				<form  action="handler.php">
-					<input type="image" class="colortext1" src="/static/img/button.png" alt="/static/img" />
-				</form>
-		   </div>
-	   {%endblock%}
-	</div>
+			</div></div></div>
+		<div id="recent-posts-4" class="widget widget_recent_entries"><div class="widget-wrap">		<h4 class="widgettitle">Recent Posts</h4>
+		<ul>
+				<li><a href="http://demo.studiopress.com/blog/sample-post-with-threaded-comments.htm" title="Sample Post With Threaded Comments">Sample Post With Threaded Comments</a></li>
+				<li><a href="http://demo.studiopress.com/blog/sample-post-with-image-aligned-left.htm" title="Sample Post With Image Aligned Left">Sample Post With Image Aligned Left</a></li>
+				<li><a href="http://demo.studiopress.com/blog/sample-post-with-image-aligned-right.htm" title="Sample Post With Image Aligned Right">Sample Post With Image Aligned Right</a></li>
+				<li><a href="http://demo.studiopress.com/blog/sample-post-with-image-centered.htm" title="Sample Post With Image Centered">Sample Post With Image Centered</a></li>
+				<li><a href="http://demo.studiopress.com/blog/sample-post-with-an-unordered-list.htm" title="Sample Post With an Unordered List">Sample Post With an Unordered List</a></li>
+				</ul>
+		</div></div>
+<div id="latest-tweets-5" class="widget latest-tweets"><div class="widget-wrap"><h4 class="widgettitle">Latest Tweets</h4>
+<ul>
+<li>WordPress 3.4 Beta 2 is now available: <a href="http://t.co/H9pJ3eKC" target="_blank">http://t.co/H9pJ3eKC</a> <span style="font-size: 85%;"><a href="http://twitter.com/bgardner/status/190286775002996736" rel="nofollow">about 39 mins ago</a></span></li>
+<li>Pinterest for Real Estate Agents - Another Cool Social Media Tool -- <a href="http://t.co/t8tsVydq" target="_blank">http://t.co/t8tsVydq</a> <span style="font-size: 85%;"><a href="http://twitter.com/bgardner/status/190283920670081025" rel="nofollow">about 50 mins ago</a></span></li>
+<li>Watching the Deadliest Catch season premiere. Life is good again. <span style="font-size: 85%;"><a href="http://twitter.com/bgardner/status/190283348059488257" rel="nofollow">about 52 mins ago</a></span></li>
+</ul>
+</div></div>
+<div id="tag_cloud-3" class="widget widget_tag_cloud"><div class="widget-wrap"><h4 class="widgettitle">Tags</h4>
+<div class="tagcloud"><a href="http://demo.studiopress.com/blog/tag/blockquotes" class="tag-link-17" title="1 topic" style="font-size: 8pt;">Blockquotes</a>
+<a href="http://demo.studiopress.com/blog/tag/headlines" class="tag-link-18" title="1 topic" style="font-size: 8pt;">Headlines</a>
+<a href="http://demo.studiopress.com/blog/tag/images-centered" class="tag-link-19" title="1 topic" style="font-size: 8pt;">Images Centered</a>
+<a href="http://demo.studiopress.com/blog/tag/images-left" class="tag-link-20" title="1 topic" style="font-size: 8pt;">Images Left</a>
+<a href="http://demo.studiopress.com/blog/tag/images-right" class="tag-link-21" title="1 topic" style="font-size: 8pt;">Images Right</a>
+<a href="http://demo.studiopress.com/blog/tag/ordered-lists" class="tag-link-22" title="1 topic" style="font-size: 8pt;">Ordered Lists</a>
+<a href="http://demo.studiopress.com/blog/tag/threaded-comments" class="tag-link-23" title="1 topic" style="font-size: 8pt;">Threaded Comments</a>
+<a href="http://demo.studiopress.com/blog/tag/unordered-lists" class="tag-link-24" title="1 topic" style="font-size: 8pt;">Unordered Lists</a></div>
+</div></div>
 </div>
-</div>
-<div id="line"><p class="line1"></p></div>
-<div id="navigation">
-<div class="container_12">
-<div class="grid_12 top">
-    <ul class="nav">
-	{%block menu%}
-		<li><a href="#"><strong>HOME</strong></a></li>
-		<li><a href="#"><strong>NEWS</strong></a></li>
-		<li><a href="#"><strong>TUTORIAL</strong></a></li>
-		<li><a href="#"><strong>FAQ</strong></a></li>
-		<li><a href="#"><strong>PROFILE</strong></a></li>
-	{%endblock%}
-    </ul>
-</div>
-</div>
-</div>
-<div class="silver">
-{% block body %}{% endblock%}
-
-<div id="middle"><div class="layout">
-<div class="col1"><div class="wrap"><p class="line1"></p></div></div>
-<div class="col2"><span class="text6">More about us</span></div>
-<div class="col3"><div class="wrap"><p class="line1"></p></div></div></div>
-</div>
-
-<div id="grey1">
-<div class="container_12">
-<div class="grid_12 four"></div>
-<div class="grid_3"><span class="text10">Safe and Secure</span></div>
-<div class="grid_3"><span class="text9">Easy and friendly</span></div>
-<div class="grid_3"><span class="text8">Huge amount of class</span></div>
-<div class="grid_3"><span class="text7">Boasting</span></div>
-<div class="grid_3"><p class="text3">All your information is safe with us.</p></div>
-<div class="grid_3"><p class="text3">Various of tutorial and advices for beginner.Don't hesitate to ask!</p></div>
-<div class="grid_3"><p class="text3">Thousands of useful, interesting lectures is here.Just in a few clicks</p></div>
-<div class="grid_3"><p class="text3">Any paragraph.</p></div>
-<div class="grid_12 four"></div>
-</div>
-</div>
-
-<div id="line2"><p class="line1"></p></div>
-<div id="facebook">
-<div class="container_12">
-<div class="grid_3">
-    <img src="/static/img/10.png" alt="/static/img" />
-</div>
-<div class="grid_9">
-    <img class="image3" src="/static/img/f1.png" alt="/static/img" />
-	<img src="/static/img/f2.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f3.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f4.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f5.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f6.png" class="image" alt="/static/img" />
-	<img src="/static/img/f7.png" class="image" alt="/static/img" />
-	<img src="/static/img/f8.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f9.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f10.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f11.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f4.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f5.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f6.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f7.png" class="image"  alt="/static/img" />
-	<img src="/static/img/f8.png"  class="image" alt="/static/img" />
-	<img src="/static/img/f9.png" class="image" alt="/static/img" />
-	<img src="/static/img/f10.png"  class="image" alt="/static/img" />
-</div>
-<div class="grid_12 fase"></div>
-<div class="grid_1"><img src="/static/img/12.png" alt="/static/img" /></div>
-<div class="grid_5"><p class="text11">Compliment.<br /><br /><strong>Dave Donovan, MEC Student</strong></p></div>
-<div class="grid_1"><img src="/static/img/12.png" alt="/static/img" /></div>
-<div class="grid_5"><p class="text11">Compliment.<br /><br /><strong>John Doe, MEC Student</strong> </p></div>
-
-</div>
-</div>
-<div id="line"><p class="line1"></p></div>
-<div id="footer"><div class="container_12"><div class="grid_6 "><div> <img class="logo2" src="/static/img/13.png" alt="/static/img" /></div>
-
-<div class="vlinks"><a href="http://www.webdesign.org">Web design</a> by <a title="Free Templates Online" href="http://www.freetemplatesonline.com">Free Templates</a> Online</div>
-
-<div class="text12">© 2001-2011 All Rights Reserved</div></div>
+	</div><!-- end #content-sidebar-wrap -->
+	</div><!-- end #inner --><div id="footer" class="footer"><div class="wrap"><div class="gototop"><p><a href="#wrap" rel="nofollow">Return to top of page</a></p></div><div class="creds"><p>Copyright © 2012 ·  <a href="http://www.studiopress.com/" title="Genesis Framework">Genesis Framework</a> · <a href="http://wordpress.org/" title="WordPress">WordPress</a> · <a href="http://demo.studiopress.com/wp-login.php">Log in</a></p></div></div><!-- end .wrap --></div><!-- end #footer -->
+</div><!-- end #wrap -->
+<script type="text/javascript" src="/static/superfish.js"></script>
+<script type="text/javascript" src="/static/superfish_002.js"></script>
 
 
-<div class="grid_2">
-<div class="news">MEC News</div>
-<div class="blue"><a target="_blank" href="">Overview</a></div>
-<div class="blue"><a target="_blank" href="">Store</a></div>
-<div class="blue"><a target="_blank" href="">Hosting</a></div>
-<div class="blue"><a target="_blank" href="">Videos</a></div>
-</div><div class="grid_2">
-<div class="news">Resources</div>
-<div class="blue"><a target="_blank" href="">Overview</a></div>
-<div class="blue"><a target="_blank" href="">Store</a></div>
-<div class="blue"><a target="_blank" href="">Hosting</a></div>
-<div class="blue"><a target="_blank" href="">Videos</a></div>
-</div><div class="grid_2">
-<div class="news">Contact Us</div>
-<div class="blue"><a target="_blank" href="">Support</a></div>
-<div class="blue"><a target="_blank" href="">FAQ</a></div>
-<div class="blue"><a target="_blank" href="">Forum</a></div>
-<div class="blue"><a target="_blank" href="">Privacy Policy</a></div></div>
-</div>
-</div>
-</div>
-
-</body>
-</html>
+</body></html>

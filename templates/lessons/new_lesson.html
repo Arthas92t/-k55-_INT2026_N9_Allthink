@@ -6,7 +6,7 @@
 
 {%block title%}Create Lesson{%endblock%}
 {%block body%}
-	<form action="/lessons/new_lesson/" method="post">{% csrf_token %}
+	<form action="/lessons/new_lesson/" method="post" >{% csrf_token %}
 		<div><a href="/">Back</a></div>
 		<div>{{ message }}</div>
 		Lesson's name: 

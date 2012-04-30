@@ -7,9 +7,13 @@
 
 {%block body%}
 	{{type}}
-	<form action="." method="post">{% csrf_token %}
+	<form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
 		<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
-		<table>{{form.as_table}}</table>
+		<table>{{form.as_table}}
+		{% for i in bonus %}
+		{{i.as_table}}
+		{%endfor%}
+		</table>
 		<input type="submit" value="Save" />
 	</form>
 {%endblock%}
