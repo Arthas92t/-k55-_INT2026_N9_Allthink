@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.models import Permission
 from django.contrib.auth import authenticate, login
-from lessons.models import Lesson
+from lessons.models import *
 from account.models import *
 from django import forms
 
@@ -9,6 +9,7 @@ from django import forms
 from django.shortcuts import render_to_response
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
@@ -20,6 +21,7 @@ def loginPage(request):
 	
 	return render_to_response('account/login.html',{'loginMessage':loginMessage, 'regMessage':regMessage, 'formReg': formReg})
 
+@login_required
 def homePage(request):
 	yourLessons = []
 	otherLessons = []

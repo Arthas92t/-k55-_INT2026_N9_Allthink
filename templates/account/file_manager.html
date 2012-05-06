@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title %}File Manager{% endblock %}
+
+{% block body %}
+	{{ loginMessage }}
+	<form action="/file_manager/" method="post" enctype="multipart/form-data">{% csrf_token %}
+		<table>{{upload.as_table}}
+		</table>
+		<input type="submit" value="upload" /><br/>
+	</form>
+	<table border="1">
+	{%for i in files%}
+		<tr><th>{{ i }}</th><th><a href="/files/delete/{{i.id}}/">delete</a></th></tr>
+	{%endfor%}
+	</table>
+	<div>&nbsp;</div><br />
+{% endblock %}
+</html>

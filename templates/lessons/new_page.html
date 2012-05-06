@@ -3,16 +3,14 @@
 {% extends "index.html" %}
 
 {% load i18n %}
-{%block title%}Lesson {{ lessonName }}{%endblock%}
+{%block title%}Lesson {{ lesson.name }}{%endblock%}
 
 {%block body%}
 	{{type}}
 	<form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
 		<div><a href="/lessons/edit_lesson/{{lessonID}}/">Back</a></div>
-		<table>{{form.as_table}}
-		{% for i in bonus %}
-		{{i.as_table}}
-		{%endfor%}
+		<table>
+		{{form.as_table}}
 		</table>
 		<input type="submit" value="Save" />
 	</form>

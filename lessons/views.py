@@ -7,20 +7,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render_to_response
 from django.http import HttpResponse, HttpResponseRedirect
 from lessons.models import *
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def createLesson(request):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
-	message = lessonName =''
+	message = name =''
 	if request.POST:
-		lesson = Lesson(user = request.user, lessonName=request.POST.get('lessonName'), information = request.POST.get('information'))
+		lesson = Lesson(user = request.user, name=request.POST.get('name'), information = request.POST.get('information'))
 		lesson.save()
 		return HttpResponseRedirect('/lessons/edit_lesson/'+str(lesson.id)+'/')
-	return render_to_response('lessons/new_lesson.html',{'username': request.user.username,'message':message,'lessonName':lessonName})
+	return render_to_response('lessons/new_lesson.html',{'username': request.user,'message':message})
 
+@login_required
 def deleteLesson(request, lessonID):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	message =''
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
@@ -30,11 +29,10 @@ def deleteLesson(request, lessonID):
 		return render_to_response('error/permission_deny.html')
 
 	lesson.delete()
-	return HttpResponseRedirect('/')
+	return HttpResponseRedirect('/your_lessons/')
 
+@login_required
 def editLesson(request, lessonID):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
@@ -44,25 +42,27 @@ def editLesson(request, lessonID):
 
 	listPage= lesson.getAllPage()
 	return render_to_response('lessons/edit_lesson.html',
-		{'username': request.user.username, 'lessonID':lessonID,
-		'lessonName':lesson.lessonName, 'information':lesson.information,
-		'listPage':listPage})
+		{'username': request.user, 'lesson':lesson,
+		'information':lesson.information,'listPage':listPage})
 
+@login_required
 def newPage(request, lessonID, type):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
 
 	if( not lessonPermission(request, lesson)):
 		return render_to_response('error/permission_deny.html')
+	
+	result = lesson.addPage(request, type)
+	if result['accept']:
+		return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+	return render_to_response('lessons/new_page.html',{'username': request.user.username,
+		'lessonID':lessonID, 'form':result['form'],
+		})
 
-	return	lesson.addPage(request, type)
-
+@login_required
 def editPage(request, lessonID, pageNumber):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
@@ -74,30 +74,32 @@ def editPage(request, lessonID, pageNumber):
 	if( not pagePermission(request, page)):
 		return render_to_response('error/permission_deny.html')
 
-	return page.editPage(request, lessonID)
+	result = page.editPage(request)
+	if result['accept']:
+		return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
+	return render_to_response('lessons/new_page.html',{'username': request.user.username,
+		'lessonID':lessonID, 'form':result['form'],
+		})
 
+@login_required
 def viewPage(request, lessonID, pageNumber):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
 	
 	listPage = lesson.getAllPage()
 	page = lesson.getPage(pageNumber)
-	if page is None:
-		return render_to_response('error/not_found.html')
+	previousPage = int(pageNumber) - 1
 	nextPage = 0
 	if(int(pageNumber) < len(lesson.getAllPage()) - 1):
 		nextPage = int(pageNumber) + 1
-	return render_to_response('lessons/view_page.html',{'username': request.user.username,
-		'lessonID':lessonID, 'page':page, 'listPage':listPage,
-		'type': type, 'nextPage': nextPage,
+	return render_to_response('lessons/view_page.html',{'username': request.user, 'lesson':lesson,
+		'page':page, 'listPage':listPage,
+		'previousPage': previousPage, 'nextPage': nextPage,
 		})
 
+@login_required
 def deletePage(request, lessonID, pageNumber):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
@@ -116,9 +118,8 @@ def deletePage(request, lessonID, pageNumber):
 			i.save()
 	return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
 
+@login_required
 def upPage(request, lessonID, pageNumber):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
@@ -138,9 +139,8 @@ def upPage(request, lessonID, pageNumber):
 		page1.save()
 	return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
 
+@login_required
 def downPage(request, lessonID, pageNumber):
-	if not request.user.is_authenticated():
-		return HttpResponseRedirect('/')
 	lesson = get_lesson(lessonID = lessonID)
 	if lesson is None:
 		return render_to_response('error/not_found.html')
@@ -161,5 +161,5 @@ def downPage(request, lessonID, pageNumber):
 	return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
 
 def test(request):
-	t = '<a href="/lessons/view_page/{{lessonID}}/{{ i.pageNumber + 1 }}/">Next page</a>'
+	t = isinstance(HttpResponseRedirect('/'),HttpResponseRedirect)
 	return render_to_response('lessons/bug.html', {'t': t})

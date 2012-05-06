@@ -5,7 +5,7 @@
 {% load i18n %}
 {%block title%}
 <head>
-	<title>Lesson {{ lessonName }}</title>
+	<title>Lesson {{ lesson.name }}</title>
 	<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
 </head>
 {%endblock%}
@@ -15,10 +15,10 @@
 	
 	 <div class="text3">
 	
-		<form action="/lessons/edit_lesson/{{lessonID}}/" " method="post">
+		<form action="/lessons/edit_lesson/{{lesson.id}}/" " method="post">
 			<div><a href="/">Back</a></div>
 			{{ message }}
-			Lesson's name: {{ lessonName }}
+			Lesson's name: {{ lesson.name }}
 			<div></div>
 			Lesson's information: {{information}}
 		</form>

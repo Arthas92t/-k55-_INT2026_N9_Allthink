@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.core.exceptions import ValidationError
 from django.core import validators
+from django.forms.widgets import *
 import os
 
 from django.shortcuts import render_to_response
@@ -15,10 +16,10 @@ def lessonPermission(request, lesson):
 def pagePermission(request, page):
 	return request.user == page.lesson.user
 
-def get_lesson(lessonID = 0, lessonName =''):
-	if cmp(lessonName,'') != 0:
+def get_lesson(lessonID = 0, name =''):
+	if cmp(name,'') != 0:
 		try:              
-			return Lesson.objects.get(lessonName=lessonName)
+			return Lesson.objects.get(name=name)
 		except Lesson.DoesNotExist:
 			return None
 	try:
@@ -26,13 +27,20 @@ def get_lesson(lessonID = 0, lessonName =''):
 	except Lesson.DoesNotExist:
 		return None
 
+def get_file(fileID = 0):
+	try:
+		return UserFile.objects.get(pk=fileID)
+	except UserFile.DoesNotExist:
+		return None
+
 class Lesson(models.Model):
 	user = models.ForeignKey(User)
-	lessonName = models.CharField(max_length=200)
+	name = models.CharField(max_length=200)
 	information = models.CharField(max_length=1000)
-	
+	userJoined = models.ManyToManyField(User, related_name='lessonsjoined')
+
 	def __unicode__(self):
-		return self.lessonName
+		return self.name
 	
 	def addPage(self, request, type):
 		if type == 'video':
@@ -50,7 +58,7 @@ class Lesson(models.Model):
 		newPage.lesson = self
 		newPage.type = type
 		newPage.pageNumber = self.len()
-		return newPage.editPage(request, self.id)
+		return newPage.editPage(request)
 		
 	def getAllPage(self):
 		listPage = []
@@ -76,7 +84,10 @@ class Lesson(models.Model):
 		return len(self.getAllPage())
 		
 	def getPage(self, number):
-		return self.getAllPage()[int(number)]
+		allPage = self.getAllPage()
+		if int(number) < len(allPage):
+			return allPage[int(number)]
+		return None
 	
 class FormVideoPage(forms.Form):
 	title = forms.CharField(max_length=200, required = True)
@@ -99,9 +110,9 @@ class VideoPage(models.Model):
 	def linkID(self):
 		return self.link[(len(self.link) - 11):]
 
-	def editPage(self, request, lessonID):
+	def editPage(self, request):
 		formNewPage = FormVideoPage(initial={'title': self.title, 'link': self.link, 'text': self.text})
-		
+		accept = False
 		if request.POST:
 			formNewPage = FormVideoPage(request.POST)
 			if formNewPage.is_valid():
@@ -109,11 +120,8 @@ class VideoPage(models.Model):
 				self.title = formNewPage.cleaned_data['title']
 				self.text = formNewPage.cleaned_data['text']
 				self.save()
-				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-		return render_to_response('lessons/new_page.html',{'username': request.user.username,
-			'lessonID':lessonID, 'form':formNewPage,
-			'type': type,
-			})
+				accept = True
+		return {'form':formNewPage, 'accept':accept}
 
 class FormImagePage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -133,9 +141,9 @@ class ImagePage(models.Model):
 	def __unicode__(self):
 		return self.title
 
-	def editPage(self, request, lessonID):
+	def editPage(self, request):
 		formNewPage = FormImagePage(initial={'title': self.title, 'link': self.link, 'text': self.text})
-		
+		accept = False
 		if request.POST:
 			formNewPage = FormImagePage(request.POST)
 			if formNewPage.is_valid():
@@ -144,15 +152,14 @@ class ImagePage(models.Model):
 				self.title = formNewPage.cleaned_data['title']
 				self.text = formNewPage.cleaned_data['text']
 				self.save()
-				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-		return render_to_response('lessons/new_page.html',{'username': request.user.username,
-			'lessonID':lessonID, 'form':formNewPage,
-			'type': type,
-			})
+				accept = True
+		return {'form':formNewPage, 'accept':accept}
 
 class FormDocumentPage(forms.Form):
+	allFiles = {('','....')}
 	title = forms.CharField(max_length=200)
-	file = forms.FileField(label = 'Upload document')
+	oldFile = forms.ChoiceField(label = 'Select Document', widget= Select, choices = allFiles, required=False)
+	file = forms.FileField(label = 'or Upload New', required=False)
 	text = forms.CharField(max_length = 1000, label = 'Text (Optional)', required=False)
 
 class DocumentPage(models.Model):
@@ -168,25 +175,33 @@ class DocumentPage(models.Model):
 	def __unicode__(self):
 		return self.title
 
-	def editPage(self, request, lessonID):
-		formNewPage = FormDocumentPage(initial={'title': self.title, 'link': self.link, 'text': self.text})
-		
-		if request.method == 'POST':
+	def editPage(self, request):
+		accept = False
+		allFiles = ((None,'-----'),)
+		for i in request.user.userfile_set.all():
+			allFiles = allFiles + ((i.file.url ,i),)
+		formNewPage = FormDocumentPage(initial={'title': self.title, 'text': self.text})
+		formNewPage.fields['oldFile'].choices = allFiles
+		formNewPage.fields['oldFile'].initial = self.link
+		if request.POST:
 			formNewPage = FormDocumentPage(request.POST, request.FILES)
+			allFiles = ((None,'-----'),)
+			for i in request.user.userfile_set.all():
+				allFiles = allFiles + ((i.file.url ,i.file.name),)
+			formNewPage.fields['oldFile'].choices = allFiles
 			if formNewPage.is_valid():
-				file = UserFile()
-				file.user = self.lesson.user
-				file.uploadFile(request)
-				self.link = file.file.url
-				self.title = formNewPage.cleaned_data['title']
-				self.text = formNewPage.cleaned_data['text']
-				file.save()
-				self.save()
-				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-		return render_to_response('lessons/new_page.html',{'username': request.user.username,
-			'lessonID':lessonID, 'form':formNewPage,
-			'type': type,
-			})
+				if (formNewPage.fields['oldFile']) or (formNewPage.fields['file']):
+					self.link = formNewPage.cleaned_data['oldFile']
+					if request.FILES:
+						file = UserFile()
+						file.uploadFile(request)
+						self.link = file.file.url
+						file.save()
+					self.title = formNewPage.cleaned_data['title']
+					self.text = formNewPage.cleaned_data['text']
+					self.save()
+					accept = True
+		return {'form':formNewPage, 'accept':accept}
 
 class FormTextPage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -203,7 +218,8 @@ class TextPage(models.Model):
 	
 	def __unicode__(self):
 		return self.title
-	def editPage(self, request, lessonID):
+	def editPage(self, request):
+		accept = False
 		formNewPage = FormTextPage(initial={'title': self.title, 'text': self.text})
 		
 		if request.POST:
@@ -212,11 +228,8 @@ class TextPage(models.Model):
 				self.title = formNewPage.cleaned_data['title']
 				self.text = formNewPage.cleaned_data['text']
 				self.save()
-				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID)+'/')
-		return render_to_response('lessons/new_page.html',{'username': request.user.username,
-			'lessonID':lessonID, 'form':formNewPage,
-			'type': type,
-			})
+				accept = True
+		return {'form':formNewPage, 'accept':accept}
 
 class FormStepPage(forms.Form):
 	title = forms.CharField(max_length=200)
@@ -378,7 +391,8 @@ class StepPage(models.Model):
 			allExp = allExp + [self.explanation20]
 		return allStep, allExp
 			
-	def editPage(self, request, lessonID):
+	def editPage(self, request):
+		accept = False
 		a = {'title': self.title, 'text': self.text}
 		allStep, allExp = self.getAllStep()
 		for i in range(len(allStep)):
@@ -431,17 +445,21 @@ class StepPage(models.Model):
 				self.explanation19 = formNewPage.cleaned_data['explanation19']
 				self.explanation20 = formNewPage.cleaned_data['explanation20']
 				self.save()
-				return HttpResponseRedirect('/lessons/edit_lesson/'+str(lessonID))
-		return render_to_response('lessons/new_page.html',{'username': request.user.username,
-			'lessonID':lessonID, 'form':formNewPage,
-			'type': type,
-			})
+				accept = True
+		return {'form':formNewPage, 'accept':accept}
 	
+class FormFile(forms.Form):
+	file = forms.FileField(label = 'Upload New', required=False)
+
 class UserFile(models.Model):
 	user = models.ForeignKey(User)
 
-	file = models.FileField(upload_to = 'a')
+	file = models.FileField(upload_to = 'file')
 	
 	def uploadFile(self, request):
+		self.user = request.user
 		self.file = request.FILES['file']
 		self.save()
+	
+	def __unicode__(self):
+		return self.file.name.split('/')[len(self.file.name.split('/'))-1]

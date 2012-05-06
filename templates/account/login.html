@@ -21,7 +21,6 @@
 	<p>Join one of the biggest community in the world !</p>
 	{{ regMessage }}
 	<form action="/register/" method="POST">{% csrf_token %}
-	
 		<table>{{formReg.as_table}}</table>
 		<input type="submit" value="register" />
 	</form>

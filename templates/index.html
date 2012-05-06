@@ -6,8 +6,8 @@
 {%block title%}Project AllThink{%endblock%}
 
 {%block account%}
-	<li><strong>{{ username }}</strong></a></li>
-	<li><strong><a href="/logout/">logout</strong></a></li>
+	<li><strong>{{ username }}</strong>
+	<strong><a href="/logout/">logout</strong></a></li>
 {%endblock%}
 
 {%block body%}	
@@ -22,7 +22,7 @@
 			<h1 id="site-name">Your Lessons</h1>
 			{% for lesson in yourLessons %}
 				<h2>
-					<a href="/lessons/edit_lesson/{{ lesson.id }}/">{{ lesson.lessonName }}</a>
+					<a href="/lessons/edit_lesson/{{ lesson.id }}/">{{ lesson.name }}</a>
 					<a href="/lessons/delete_lesson/{{ lesson.id }}/">delete</a>
 				</h2>
 			{% endfor %}
@@ -31,7 +31,7 @@
 			{% for lesson in otherLessons %}
 			<h2>
 				<a href="/lessons/view_page/{{ lesson.id }}/0">
-					{{ lesson.lessonName }}
+					{{ lesson.name }}
 				</a>
 				Creator: {{ lesson.user }}
 			</h2>

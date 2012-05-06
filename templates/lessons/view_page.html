@@ -3,17 +3,19 @@
 {% extends "index.html" %}
 
 {% load i18n %}
-{%block title%}Lesson {{ page.lesson.lessonName }}{%endblock%}
+{%block title%}Lesson {{ page.lesson.name }}{%endblock%}
 
 {%block body%}
-	{% if page.lesson.user.username == username %}
-		<a href="/lessons/edit_lesson/{{lessonID}}/">Back</a>
+	{% if page.lesson.user == username %}
+		<div><a href="/lessons/edit_lesson/{{ page.lesson.id }}/">Back</a></div>
 	{% endif %}
-	Lesson: {{ page.lesson.lessonName }}
+	Lesson: {{ lesson.name }}
 	<div></div>
-	Infomation: {{ page.lesson.information }}
+	Infomation: {{ lesson.information }}
 	<br></br>
+	{% if Page %}
 	Page: {{page.title}}
+	{%endif%}
 	<div></div>
 	{{page.text}}
 	<div></div>
@@ -133,10 +135,13 @@
 			{{page.explanation20}}
 		{%endif%}
 	{% endif%}
+	{% if previousPage != -1%}
+		<div><a href="/lessons/view_page/{{ page.lesson.id }}/{{ previousPage }}/">previous page</a></div>
+	{%endif%}
 	{% if nextPage %}
-		<div><a href="/lessons/view_page/{{lessonID}}/{{ nextPage }}/">Next page</a></div>
+		<div><a href="/lessons/view_page/{{ page.lesson.id }}/{{ nextPage }}/">Next page</a></div>
 	{%endif%}
 	{%for i in listPage %}
-		<div><a href="/lessons/view_page/{{lessonID}}/{{ i.pageNumber }}/">{{ i.type }} {{ i.title}}</a></div>
+		<div><a href="/lessons/view_page/{{ page.lesson.id }}/{{ i.pageNumber }}/">{{ i.type }} {{ i.title}}</a></div>
 	{%endfor%}
 {%endblock%}

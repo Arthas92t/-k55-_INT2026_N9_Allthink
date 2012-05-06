@@ -3,31 +3,31 @@
 {% extends "index.html" %}
 
 {% load i18n %}
-{%block title%}Edit Lesson {{ lessonName }}{%endblock%}
+{%block title%}Edit Lesson {{ lesson.name }}{%endblock%}
 
 {%block body%}
-	<form action="/lessons/edit_lesson/{{lessonID}}/" " method="post">{% csrf_token %}
+	<form action="/lessons/edit_lesson/{{lesson.id}}/" " method="post">{% csrf_token %}
 		<div><a href="/">Back</a></div>
 		{{ message }}
 		Lesson's name: 
-		{{ lessonName }}
+		{{ lesson.name }}
 		<div></div>
 		Lesson's information: 
 		{{ information }}
-        {% for page in listPage %}		
-			<h2><a href="/lessons/view_page/{{lessonID}}/{{ page.pageNumber }}/">{{ page.type }} {{ page.title}}</a></h2>
-			<a href="/lessons/edit_page/{{lessonID}}/{{ page.pageNumber }}">edit</a>
-			<a href="/lessons/delete_page/{{lessonID}}/{{ page.pageNumber }}"> delete</a>
-			<a href="/lessons/up_page/{{lessonID}}/{{ page.pageNumber }}"> up</a>
-			<a href="/lessons/down_page/{{lessonID}}/{{ page.pageNumber }}"> down</a></h2>
+        {% for page in listPage %}
+			<h4><a href="/lessons/view_page/{{lesson.id}}/{{ page.pageNumber }}/">{{ page.type }} {{ page.title}}</a></h4>
+			<a href="/lessons/edit_page/{{lesson.id}}/{{ page.pageNumber }}">edit</a>
+			<a href="/lessons/delete_page/{{lesson.id}}/{{ page.pageNumber }}"> delete</a>
+			<a href="/lessons/up_page/{{lesson.id}}/{{ page.pageNumber }}"> up</a>
+			<a href="/lessons/down_page/{{lesson.id}}/{{ page.pageNumber }}"> down</a>
         {% endfor %}	
 		</br>
-		<a href="/lessons/view_page/{{lessonID}}/0/">View lesson</a>
-		<div><a href="/lessons/new_page/{{lessonID}}/video">Create video page</a></div>
-		<div><a href="/lessons/new_page/{{lessonID}}/image">Create image page</a></div>
-		<div><a href="/lessons/new_page/{{lessonID}}/document">Create document page</a></div>
-		<div><a href="/lessons/new_page/{{lessonID}}/text">Create text page</a></div>
-		<div><a href="/lessons/new_page/{{lessonID}}/step">Create step to step page</a></div>
+		<a href="/lessons/view_page/{{lesson.id}}/0/">View lesson</a>
+		<div><a href="/lessons/new_page/{{lesson.id}}/video">Create video page</a></div>
+		<div><a href="/lessons/new_page/{{lesson.id}}/image">Create image page</a></div>
+		<div><a href="/lessons/new_page/{{lesson.id}}/document">Create document page</a></div>
+		<div><a href="/lessons/new_page/{{lesson.id}}/text">Create text page</a></div>
+		<div><a href="/lessons/new_page/{{lesson.id}}/step">Create step to step page</a></div>
 	</form>
 {%endblock%}
 </html>
