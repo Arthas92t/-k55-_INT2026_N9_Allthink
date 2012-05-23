@@ -12,3 +12,11 @@ A lessons will have video, document, image, list, step by step, text.
 
 Language-Environment:
 Python-Django
+
+Deploy:
+	Heroku server:
+	allthink-g9.herokuapp.com
+	
+	issues:
+	heroku server not allow to save uploaded file for long time
+	need a better server
