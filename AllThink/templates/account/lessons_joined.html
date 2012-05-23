@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title%}Project AllThink{%endblock%}
+
+{%block body%}	
+	<h1 id="site-name">Lessons Joined</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<table class="table table-bordered">
+	{% for lesson in lessons %}
+			<tr><th><h4>
+				<a href="/lessons/view_page/{{ lesson.id }}/0" title ="{{lesson.information}}">
+					<img src="/static/lesson.jpg" class="image-icon"/>{{ lesson.name }}
+				</a>
+				<a href="/unjoin_lesson/{{ lesson.id }}/">
+					<img src="/static/delete.jpg" class="image-button" title = "Leave"/>
+				</a>
+			</h4>
+			</th></tr>
+	{% endfor %}
+	</table>
+{%endblock%}
+</html>

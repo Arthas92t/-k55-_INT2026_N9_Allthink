@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{%block title%}Project AllThink{%endblock%}
+
+{%block account%}
+	{{ username }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout/">logout</a>
+{%endblock%}
+{%block menu%}
+	<li class="dropdown" id="menu1">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			Your Account
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+            <li><a href="/profile/">Profile</a></li>
+			<li class="divider"></li>
+            <li><a href="/file_manager/">File Manager</a></li>
+		</ul>
+	</li>
+	<li class="dropdown" id="menu1">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Lessons manager
+			<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="/your_lessons/">Your Lessons</a></li>
+            <li class="divider"></li>
+            <li><a href="/lessons_joined/">Lessons Joined</a></li>
+        </ul>
+	</li>
+    <li><a href="/help">Help</a></li>
+{%endblock%}
+{% block profile %}
+    <div class="well sidebar-nav">
+	<table class="table table-bordered">
+	<tr><th>
+	{%if profile.file %}
+		<img src="{{profile.file.url}}" class="span9"/>
+	{% else %}
+		<img src="/static/avatar.jpg" class="span9"/>
+	{%endif%}
+	<div class="span15" style ="color:blue;"><h5>{{profile.information}}</h5></div>
+	</tr></th>
+	</table>
+	</div>
+{% endblock %}
+{%block body%}	
+	<h1>Welcome</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+
+	<p><strong>Congratulation!!!</strong><br/>
+		You have just found the best education website ever !
+	</p>
+	
+{%endblock%}
+{%block widget%}
+    <div class="well sidebar-nav">
+       <ul class="nav nav-list">
+            <li class="nav-header">Search Lesson</li>
+			<li class="divider"></li>
+				<form action="/search_lessons/" method="post" >
+				<table>
+					<tr><th><label name="id_keyWord">Search:</label></th><td><input id="id_name" type="text" name="keyWord" maxlength="200" /></td></tr>
+					<tr><th><label for="id_subject">Subject:</label></th><td><select name="subject" id="id_subject">
+					<option value="">Select....</option>
+					<option value="art">Art</option>
+					<option value="math">Math</option>
+					<option value="science">Science</option>
+					<option value="physic">Physic</option>
+					<option value="computer science">Computer Science</option>
+					<option value="other">Other</option>
+					</select></td></tr>
+					<tr><th><label for="id_level">Subject:</label></th><td><select name="level" id="id_level">
+					<option value="">Select....</option>
+					<option value="e">Elementary</option>
+					<option value="h">High school</option>
+					<option value="c">College</option>
+					<option value="other">Other</option>
+					</select></td></tr>
+					<tr><th><input name ="search" class="btn btn-primary" type="submit" value="Search" /></th></tr>
+				</table>
+
+				</form>
+		</ul>
+	</div>
+{%endblock%}
+</html>

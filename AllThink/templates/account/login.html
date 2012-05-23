@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{%block title %}Welcome{% endblock %}
+
+{% block body %}
+	<h1>Welcome</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	{{ loginMessage }}
+	<form action="/login/" method="POST">{% csrf_token %}
+		Username: 
+		<input type="text" name="username" value="{{ username }}" /><br />
+	
+		Password:
+		<input type="password" name="password" value="" /><br />
+		<input class="btn btn-primary" type="submit" name ="login" value="Log In" /><br/>
+		
+	</form>
+	<p>Join one of the biggest community in the world !</p>
+	{{ regMessage }}
+	<form action="/register/" method="POST">{% csrf_token %}
+		<table>{{formReg.as_table}}</table>
+		<input class="btn btn-primary" type="submit" name ="register" value="register" />
+	</form>
+	<div>&nbsp;</div><br />
+{% endblock %}
+</html>

@@ -1,0 +1,16 @@
+{% extends "index.html" %}
+
+{% load i18n %}
+{%block title%}Lesson {{ lesson.name }}{%endblock%}
+
+{%block body%}
+	{{type}}
+	<form action="." method="post" enctype="multipart/form-data">{% csrf_token %}
+		<a class="btn btn-primary" href="/lessons/edit_lesson/{{lessonID}}/" title="back"><h4><</h4></a>
+		<input class="btn btn-primary" type="submit" value="Save" />
+		<table>
+		{{form.as_table}}
+		</table>
+	</form>
+{%endblock%}
+</html>

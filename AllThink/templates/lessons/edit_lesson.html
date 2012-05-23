@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+
+{% load i18n %}
+{%block title%}Edit Lesson {{ lesson.name }}{%endblock%}
+
+{%block body%}
+	<h1 id="site-name">Edit Lesson</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<a class="btn btn-primary" href="/your_lessons/" title="back"><h4><</h4></a>
+	<br/>
+	<h3><a title = "Lesson's Information: {{ lesson.information }}">
+		Name: {{ lesson.name }}
+		</a>
+		<a href="/lessons/edit_information/{{lesson.id}}/">
+			<img src="/static/edit.jpg" class="image-button" title = "Edit"/>
+		</a>
+	</h3>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<table class="table table-bordered">
+	{% for page in listPage %}
+		<tr><th><h4>
+			<a href="/lessons/view_page/{{lesson.id}}/{{ page.pageNumber }}/">
+				<img src="/static/{{ page.type }}.jpg" class="image-icon"/>
+				{{ page.title}}
+			</a>
+			<a href="/lessons/down_page/{{lesson.id}}/{{ page.pageNumber }}">
+			<img src="/static/down.jpg" class="image-button" title = "Down Page"/>
+			</a>
+			<a href="/lessons/up_page/{{lesson.id}}/{{ page.pageNumber }}">
+			<img src="/static/up.jpg" class="image-button" title = "Up Page"/>
+			</a>
+			<a href="/lessons/delete_page/{{lesson.id}}/{{ page.pageNumber }}">
+			<img src="/static/delete.jpg" class="image-button" title = "Delete"/>
+			</a>
+			<a href="/lessons/edit_page/{{lesson.id}}/{{ page.pageNumber }}">
+			<img src="/static/edit.jpg" class="image-button" title = "Edit"/>
+			</a>
+		</h4></th></tr>
+	{% endfor %}
+	</table>
+	<br/>
+{%endblock%}
+{%block widget%}
+<ul class="nav nav-list">
+	<li><a href="/lessons/view_page/{{lesson.id}}/0/">
+		<img src="/static/view.jpg" class="image-icon"/>View lesson
+	</a></li>
+	<li><a href="/lessons/new_page/{{lesson.id}}/video">
+		<img src="/static/video.jpg" class="image-icon"/>Create video page
+	</a></li>
+	<li><a href="/lessons/new_page/{{lesson.id}}/image">
+		<img src="/static/image.jpg" class="image-icon"/>Create image page
+	</a></li>
+	<li><a href="/lessons/new_page/{{lesson.id}}/document">
+		<img src="/static/document.jpg" class="image-icon"/>Create document page
+	</a></li>
+	<li><a href="/lessons/new_page/{{lesson.id}}/text">
+		<img src="/static/text.jpg" class="image-icon"/>Create text page	
+	</a></li>
+	<li><a href="/lessons/new_page/{{lesson.id}}/step">
+		<img src="/static/step.jpg" class="image-icon"/>Create step to step page
+	</a></li>
+</ul>
+{%endblock%}
+</html>

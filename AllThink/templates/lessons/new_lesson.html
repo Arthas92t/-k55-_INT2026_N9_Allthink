@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% load i18n %}
+
+{%block title%}Create Lesson{%endblock%}
+{%block body%}
+	<h1 id="site-name">Creat New Lesson</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<a class="btn btn-primary" href="/your_lessons/" title="back"><h4><</h4></a>
+	<form action="/lessons/new_lesson/" method="post" >{% csrf_token %}
+		<table>
+		{{lessonForm.as_table}}
+		</table>
+		<input class="btn btn-primary" type="submit" value="create" />
+	</form>
+{%endblock%}
+
+</html>

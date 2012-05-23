@@ -1,0 +1,45 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title%}Project AllThink{%endblock%}
+
+{%block body%}	
+	<h1 id="site-name">Search Result</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<table class="table table-bordered">
+		<thead>
+		<tr>
+			<th>
+				Name
+			</th>
+			<th>
+				Creator
+			</th>
+			<th>
+				Join
+			</th>
+		</tr>
+		</thead>
+		<tbody>
+	{% for lesson in otherLessons %}
+			<tr>
+				<th><h4>
+					<a href="/lessons/view_page/{{ lesson.id }}/0" title="Lesson's Information: {{lesson.information}}">{{ lesson.name }}</a>
+				</th>
+				<th>
+					<h4>{{ lesson.user }}</h4>
+				</th>
+				<th>
+				<a href="/join_lesson/{{ lesson.id }}/{{keyWord}}">
+					<img src="/static/add.jpg" class="image-button" title = "Join Lessons"/>
+				</a>
+				</th>
+				</h4></th>
+			</tr>
+	{% endfor %}
+		</tbody>
+	</table>
+{%endblock%}
+</html>

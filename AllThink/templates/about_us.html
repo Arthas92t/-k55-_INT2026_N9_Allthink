@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+{% extends "base.html" %}
+{% load i18n %}
+
+{%block title%}Project AllThink{%endblock%}
+
+{%block account%}
+{%if username.is_authenticated%}
+	{{ username }}&nbsp;&nbsp;&nbsp;&nbsp;<a href="/logout/">logout</a>
+{%endif%}
+{%endblock%}
+
+{%block menu%}
+{%if username.is_authenticated%}
+	<li class="dropdown" id="menu1">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+			Your Account
+			<b class="caret"></b>
+		</a>
+		<ul class="dropdown-menu">
+            <li><a href="/profile/">Profile</a></li>
+			<li class="divider"></li>
+            <li><a href="/file_manager/">File Manager</a></li>
+		</ul>
+	</li>
+	<li class="dropdown" id="menu1">
+		<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+            Lessons manager
+			<b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li><a href="/your_lessons/">Your Lessons</a></li>
+            <li class="divider"></li>
+            <li><a href="/lessons_joined/">Lessons Joined</a></li>
+        </ul>
+	</li>
+    <li><a href="/help">Help</a></li>
+{%endif%}
+{%endblock%}
+
+{%block body%}	
+	<h1 id="site-name">AllThink Group 9</h1>
+	There is nothing We can't do, there is nothing We won't do for you
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<h1>OVERVIEW</h1>
+	<h3>I.	Introduction</h3>
+	<h5>*	Project name : AllThink<br/>
+	*	Members:<br/>
+	1.	Nguyen Anh Tuan.<br/>
+	2.	Nguyen The Tung.<br/>
+	3.	Vu Tien Tung.<br/>
+	4.	Trinh Van Tu.</h5>
+	<h5>*	Characteristics : this project will provide  special tools which help people can create a lesion easily, another way as the teacher  the creater  will  allow who can join in lesion.<br/>
+	*	Interface : it is easy to use, anyone do not waste time to learn how to use it. <br/>
+	*	Cost : It is free for any people, we build this application not for market.</h5>
+	<h3>II.	Mission and Scope</h3>
+	<h5>*	Problem addressing:
+	Teacher want to create many lesion which anyone can participate.<br/>
+	*	Project goal:
+	Anyone can make their own lesion and share it for lots of people. By application  we hope that any teacher and student can approach knowledge easily.<br/>
+	*	Project scope:
+	Anyone can use this application !</h5>
+{%endblock%}
+
+{%block widget%}
+{%endblock%}
+</html>

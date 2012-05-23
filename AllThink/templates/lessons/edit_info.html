@@ -1,0 +1,20 @@
+{% extends "index.html" %}
+
+{% load i18n %}
+
+{%block title%}Create Lesson{%endblock%}
+{%block body%}
+	<h1 id="site-name">Edit Information</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<form action="/lessons/edit_information/{{lesson.id}}/" method="post" >{% csrf_token %}
+		<a class="btn btn-primary" href="/lessons/edit_lesson/{{lesson.id}}/" title="back"><h4><</h4></a>
+		<table>
+		{{lessonForm.as_table}}
+		</table>
+		<input class="btn btn-primary" type="submit" value="Save" />
+	</form>
+{%endblock%}
+
+</html>

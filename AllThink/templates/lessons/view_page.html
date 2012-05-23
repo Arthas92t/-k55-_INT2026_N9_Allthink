@@ -1,0 +1,112 @@
+{% extends "index.html" %}
+
+{% load i18n %}
+{%block title%}Lesson {{ page.lesson.name }}{%endblock%}
+{%block script%}
+	<script type="text/javascript">
+		var i = 0;
+		var j = 0;
+		var allStep = new Array();
+		var allExp = new Array();
+		function nextStep()
+		{
+			if(j < i){
+				var s = ""
+				if(j >0){
+				s = '<img src="/static/down.jpg" title = "Down Page"/>'
+				}
+				document.getElementById(j.toString()).innerHTML=(
+					s + "<h3>Step " +j.toString()+": " + 
+					allStep[j] + "<br/>Solution: " + allExp[j]+"</h3>"
+					);
+				j = j + 1
+			}
+		}
+	</script>
+{%endblock%}
+
+{%block body%}
+	{% if page.lesson.user == username %}
+		<a class="btn btn-primary" href="/lessons/edit_lesson/{{ page.lesson.id }}/" title="back"><h4><</h4></a>
+		<br/>
+	{% endif %}
+	<h3><a title = "Lesson's Information: {{ lesson.information }}">Lesson: {{ lesson.name }}</a></h3>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	{% if page %}
+		<h3>{{page.title}}</h3>
+		{{page.text}}
+		<div class="nav nav-list">
+		<li class="divider"></li>	
+		</div>		
+		{% if page.type == 'video' %}
+			<object style="height: 400px; width: 650px">
+				<param name="movie" value="http://www.youtube.com/embed/{{page.linkID}}">
+				<param name="allowFullScreen" value="true">
+				<param name="allowScriptAccess" value="always">
+				<iframe width="560" height="315" src="http://www.youtube.com/embed/{{page.linkID}}" frameborder="0" allowfullscreen></iframe>
+			</object>
+		{% endif%}
+		{% if page.type == 'image' %}
+			<img src="{{page.link}}"/> 
+		{% endif%}
+		{% if page.type == 'document' %}
+			<iframe src="http://docs.google.com/gview?url=http://allthink-g9.herokuapp.com/{{page.link}}&embedded=true" style="width:600px; height:500px;" frameborder="0">
+			</iframe>
+		{% endif%}
+		{% if page.type == 'step' %}
+			<p id = "0"><p>
+			<p id = "1"><p>
+			<p id = "2"><p>
+			<p id = "3"><p>
+			<p id = "4"><p>
+			<p id = "5"><p>
+			<p id = "6"><p>
+			<p id = "7"><p>
+			<p id = "8"><p>
+			<p id = "9"><p>
+			<p id = "10"><p>
+			<p id = "11"><p>
+			<p id = "12"><p>
+			<p id = "13"><p>
+			<p id = "14"><p>
+			<p id = "15"><p>
+			<p id = "16"><p>
+			<p id = "17"><p>
+			<p id = "18"><p>
+			<p id = "19"><p>
+			{% for i in bonus%}
+				<script type="text/javascript">
+					allStep[i] = "{{i.step}}"
+					allExp[i] = "{{i.explanation}}"
+					i = i + 1
+				</script>
+			{% endfor %}
+			<button class="btn btn-primary" name ="next" type="button" onclick="nextStep()">Next Step</button>
+		{% endif%}
+		<h4></h4>
+		{% if previousPage != -1%}
+			<a class="btn btn-primary" href="/lessons/view_page/{{ page.lesson.id }}/{{ previousPage }}/" title = "previus">
+				<h4>< </h4>
+			</a>
+		{%endif%}
+		{% if nextPage %}
+			<a class="btn btn-primary" href="/lessons/view_page/{{ page.lesson.id }}/{{ nextPage }}/" title = "next">
+				<h4>></h4>
+			</a>
+		{%endif%}
+	{%endif%}
+{%endblock%}
+{%block widget%}
+	<ul class="nav nav-list">
+        <li class="nav-header">List Page</li>
+		<li class="divider"></li>
+		{%for i in listPage %}
+			<li><a href="/lessons/view_page/{{ page.lesson.id }}/{{ i.pageNumber }}/" title="{{lesson.information}}">
+				<img src="/static/{{ i.type }}.jpg" class="image-icon"/>
+				{{ i.title}}
+			</a></li>
+		{%endfor%}
+	</ul>
+{%endblock%}

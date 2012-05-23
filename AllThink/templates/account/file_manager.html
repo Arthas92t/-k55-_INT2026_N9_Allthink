@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title %}File Manager{% endblock %}
+
+{% block body %}
+	<h1 id="site-name">Your Files</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<form action="/file_manager/" method="post" enctype="multipart/form-data">{% csrf_token %}
+		<table>{{upload.as_table}}
+		</table>
+		<input class="btn btn-primary" type="submit" value="upload" /><br/>
+	</form>
+	<table class="table table-bordered">
+	{%for i in files%}
+		<tr><th><h4>
+			{{ i }}
+			<a href="/files/delete/{{i.id}}/">
+				<img src="/static/delete.jpg" class="image-button" title = "Delete"/>
+			</a>
+		</h4></th></tr>
+	{%endfor%}
+	</table>
+{% endblock %}
+</html>

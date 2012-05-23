@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title%}Project AllThink{%endblock%}
+
+{%block body%}	
+	<h1 id="site-name">Your Lessons</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<a class="btn btn-primary" href="/lessons/new_lesson">add new lesson</a>
+	<table class="table table-bordered">
+	{% for lesson in yourLessons %}
+		<tr><th><h4>
+				<a href="/lessons/edit_lesson/{{ lesson.id }}/" title ="Lesson's Information: {{lesson.information}}">
+					<img src="/static/lesson.jpg" class="image-icon"/>{{ lesson.name }}
+				</a>
+				<a href="/lessons/delete_lesson/{{ lesson.id }}/">
+					<img src="/static/delete.jpg" class="image-button" title = "Delete"/>
+				</a>
+		</h4></th></tr>
+	{% endfor %}
+	</table>
+	
+{%endblock%}
+</html>

@@ -1,0 +1,17 @@
+{% extends "index.html" %}
+{% load i18n %}
+
+{%block title %}Profile{% endblock %}
+
+{% block body %}
+	<h1 id="site-name">Your Profile</h1>
+	<div class="nav nav-list">
+	<li class="divider"></li>	
+	</div>
+	<form action="/profile/" method="post" enctype="multipart/form-data">{% csrf_token %}
+		<table>{{formProfile.as_table}}
+		</table>
+		<input class="btn btn-primary" type="submit" value="Save" /><br/>
+	</form>
+{% endblock %}
+</html>
